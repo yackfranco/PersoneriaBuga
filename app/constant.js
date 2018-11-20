@@ -1,0 +1,1 @@
+angular.module('Personeria').constant('urlBase', '/PersoneriaBuga/app/model/');

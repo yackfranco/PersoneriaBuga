@@ -1,0 +1,20 @@
+<form class="form-signin" ng-submit="submitLogin()">
+    <h1 class="h3 mb-3 font-weight-normal">LOGIN</h1>
+                <input type="text" ng-model="usuario.usuario" class="form-control"
+                        placeholder="Digite usuario" required autofocus> <input
+                        type="password" ng-model="usuario.contrasena" class="form-control"
+                        placeholder="Digite la contraseña" required>
+       
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+    <p class="mt-5 mb-3 text-muted">Portal</p>
+    <div ng-show="loginError" class="alert alert-danger">Datos de usuario invalidos</div>
+</form>
+  
+<!--<div class="centered">
+  <div class="group">
+    <input type="text" id="name" required="required"/>
+    <label for="name">Name</label>
+    <div class="bar"></div>
+  </div>
+</div>-->
+  

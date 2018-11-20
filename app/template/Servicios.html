@@ -1,0 +1,104 @@
+<div class="cuerpo">
+
+    <div class="panelSuperior">
+        <div class="nombreusuario">
+            {{NombreUsuario}}
+        </div>
+
+        <div class="logo">
+            <!--logo-->
+            <img src="image/LOGO 3.png" alt="" class="logo2"/>
+        </div>
+
+        <div class="logout" ng-click="cerrarSesion()">
+            <img src="image/logout.png" alt="" style="width: 25px; height: 25px; margin-right: 10px"/>
+            Cerrar Sesion
+        </div>
+
+    </div>
+
+    <div class="panelMedio">
+        <div class="paneliz">
+            <div class="usuario">
+                {{TipoUsuario}}
+            </div>
+            <div class="items" ng-click="ClicItem('Modulo')">
+                <div class="icono">
+                    <img src="image/Monitoreo General.png" alt="" style="width: 25px; height: 25px"/>
+                </div>
+                <div class="subitem">
+               Modulo
+                </div>
+            </div>
+            <div class="items" ng-click="ClicItem('Servicios')" style="background-color: #b9bbbe; font-weight: bold;">
+                <div class="icono">
+                    <img src="image/ActivarAlarma.png" alt="" style="width: 25px; height: 25px"/>
+                </div>
+                <div class="subitem">
+                   Servicios
+                </div>
+            </div>
+            <div class="items" ng-click="ClicItem('ConfigTipoPoblacion')">
+                <div class="icono">
+                    <!--icono-->
+                    <img src="image/ConfigSistema.png" alt="" style="width: 30px; height: 30px"/>
+                </div>
+                <div class="subitem">
+                  Config Tipo Población
+                </div>
+            </div>
+            <div class="items" ng-click="ClicItem('AsigServicios')">
+                <div class="icono">
+                    <img src="image/prueba.png" alt="" style="width: 30px; height: 30px"/>
+                </div>
+                <div class="subitem">
+                  Asignación de Servicios
+                </div>
+            </div>
+            <div class="items" ng-click="ClicItem('Usuarios')">
+                <div class="icono">
+                    <img src="image/usuarios.png" alt="" style="width: 25px; height: 25px"/>
+                </div>
+                <div class="subitem">
+                    Usuarios 
+                </div>
+            </div>
+            <div class="items" ng-click="ClicItem('ConfigTurnosPerdidos')">
+                <div class="icono">
+                    <img src="image/alarmaPersonal.png" alt="" style="width: 25px; height: 25px"/>
+                </div>
+                <div class="subitem">
+                   Config. de Turnos Perdidos
+                </div>
+            </div>
+            <div class="items" ng-click="ClicItem('Reportes')">
+                <div class="icono">
+                    <img src="image/reportes.png" alt="" style="width: 25px; height: 25px"/>
+                </div>
+                <div class="subitem">
+                    Reportes
+                </div>
+            </div>
+             <div class="items" ng-click="ClicItem('ConfigTv')">
+                <div class="icono">
+                    <img src="image/reportes.png" alt="" style="width: 25px; height: 25px"/>
+                </div>
+                <div class="subitem">
+                    ConfigTv
+                </div>
+            </div>
+            www.ingetronik.com
+
+        </div>
+
+        
+        <div class="paneldere">
+            <div class="subtituloDerecha">
+                <h5>Servicios</h5>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
