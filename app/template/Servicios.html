@@ -27,7 +27,7 @@
                     <img src="image/Monitoreo General.png" alt="" style="width: 25px; height: 25px"/>
                 </div>
                 <div class="subitem">
-               Modulo
+                    Modulo
                 </div>
             </div>
             <div class="items" ng-click="ClicItem('Servicios')" style="background-color: #b9bbbe; font-weight: bold;">
@@ -35,7 +35,7 @@
                     <img src="image/ActivarAlarma.png" alt="" style="width: 25px; height: 25px"/>
                 </div>
                 <div class="subitem">
-                   Servicios
+                    Servicios
                 </div>
             </div>
             <div class="items" ng-click="ClicItem('ConfigTipoPoblacion')">
@@ -44,7 +44,7 @@
                     <img src="image/ConfigSistema.png" alt="" style="width: 30px; height: 30px"/>
                 </div>
                 <div class="subitem">
-                  Config Tipo Población
+                    Config Tipo Población
                 </div>
             </div>
             <div class="items" ng-click="ClicItem('AsigServicios')">
@@ -52,7 +52,7 @@
                     <img src="image/prueba.png" alt="" style="width: 30px; height: 30px"/>
                 </div>
                 <div class="subitem">
-                  Asignación de Servicios
+                    Asignación de Servicios
                 </div>
             </div>
             <div class="items" ng-click="ClicItem('Usuarios')">
@@ -68,7 +68,7 @@
                     <img src="image/alarmaPersonal.png" alt="" style="width: 25px; height: 25px"/>
                 </div>
                 <div class="subitem">
-                   Config. de Turnos Perdidos
+                    Config. de Turnos Perdidos
                 </div>
             </div>
             <div class="items" ng-click="ClicItem('Reportes')">
@@ -79,7 +79,7 @@
                     Reportes
                 </div>
             </div>
-             <div class="items" ng-click="ClicItem('ConfigTv')">
+            <div class="items" ng-click="ClicItem('ConfigTv')">
                 <div class="icono">
                     <img src="image/reportes.png" alt="" style="width: 25px; height: 25px"/>
                 </div>
@@ -91,13 +91,93 @@
 
         </div>
 
-        
+
         <div class="paneldere">
             <div class="subtituloDerecha">
                 <h5>Servicios</h5>
             </div>
             <div class="panelgrandeServicio">
-               
+                <div class="minipanelServicio">
+
+                    <form>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label labelListaServicio">Servicio</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="inputEmail3">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Prefijo</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="inputPassword3" >
+                            </div>
+                        </div>
+                         <div class="form-group row">
+                            <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Conteo Minimo</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="inputPassword3">
+                            </div>
+                        </div>
+                         <div class="form-group row">
+                            <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Conteo Maximo</label>
+                            <div class="col-sm-8">
+                                <input type="password" class="form-control" id="inputPassword3" >
+                            </div>
+                        </div>
+                         <div class="form-group row">
+                            <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Secuencia</label>
+                            <div class="col-sm-8">
+                                <input type="password" class="form-control" id="inputPassword3" >
+                            </div>
+                        </div>
+                         <div class="form-group row">
+                            <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Prioridad</label>
+                            <div class="col-sm-8">
+                                <input type="password" class="form-control" id="inputPassword3" >
+                            </div>
+                        </div>
+                         <div class="form-group row">
+                            <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">TV</label>
+                            <div class="col-sm-8">
+                                <input type="password" class="form-control" id="inputPassword3">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group botonesServicio">
+                            <div class="col-sm-10">
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                            </div>
+                            <div class="col-sm-10">
+                                <button class="btn btn-primary">Limpiar</button>
+                            </div>
+                        </div>
+                    </form>
+
+
+                </div>
+                <div class="minipanelServicio">
+                    <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">SERVICIO</th>
+                            <th scope="col">OPCIONES</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                         
+                        </tr>
+                    </tbody>
+                </table>
+                </div>    
             </div>
         </div>
 
