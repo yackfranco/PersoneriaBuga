@@ -1,0 +1,53 @@
+
+.panelCentralVisualizador{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 90%;
+    width: 100%;
+}
+
+.derechaVisualizador{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 40%;
+}
+
+.IzquierdaVisualizador{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 60%;
+}
+
+.textTV{
+    width: 70%;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.logotvConfigTv{
+    width: 60%;
+    height: 75%;
+     border-style: solid;
+    border-width:1px 1px 1px 1px;
+    border-color: #b9bbbe;
+}
+
+.botonGuardarCOnfigTV{
+    margin: 30px;
+}
+
+.botonesConfigTV{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
