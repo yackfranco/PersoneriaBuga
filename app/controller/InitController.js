@@ -11,10 +11,9 @@ function InitController($scope, $state, $sessionStorage, servicios) {
 //        console.log($scope.usuario);
         servicios.login($scope.usuario).then(function success(response) {
             console.log(response.data[0]);
-            $sessionStorage.nombreUsuario = response.data[0].usu_nombres;
-            $sessionStorage.apellidoUsuario = response.data[0].usu_apellidos;
-            $sessionStorage.idusuario = response.data[0].usu_codigo;
-            $sessionStorage.rol = response.data[0].rol;
+            $sessionStorage.nombreUsuario = response.data[0].NombreCompleto;
+            $sessionStorage.idusuario = response.data[0].IdUsuario;
+            $sessionStorage.rol = response.data[0].Rol;
             $state.go('dashboard');
         }, function error(response) {
             console.log("no entró");

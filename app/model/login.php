@@ -9,7 +9,7 @@ $contra = $_POST["contrasena"];
 //print_r($contra);
 
 
-$arreglo = DevolverUnArreglo("SELECT usuario.usu_codigo, usuario.usu_nombres, usuario.usu_apellidos,tipo_usuario.tip_usu_nombre as rol FROM usuario JOIN tipo_usuario ON (usuario.usu_tip_codigo = tipo_usuario.tip_usu_codigo)where usuario.usu_identificacion = '".$user."' and usuario.usu_contrasena = '".hash('MD5', $contra)."'");
+$arreglo = DevolverUnArreglo("SELECT * from usuario where NombreUsuario='$user' and Contrasena = '".hash('MD5', $contra)."'");
 if($arreglo == null){
     http_response_code(401);
     $validar = [];
