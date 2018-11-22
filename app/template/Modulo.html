@@ -27,7 +27,7 @@
                     <img src="image/modulo.png" alt="" style="width: 25px; height: 25px"/>
                 </div>
                 <div class="subitem">
-                 Modulo
+                    Modulo
                 </div>
             </div>
             <div class="items" ng-click="ClicItem('Servicios')">
@@ -35,7 +35,7 @@
                     <img src="image/operador.png" alt="" style="width: 25px; height: 25px"/>
                 </div>
                 <div class="subitem">
-                  Servicios
+                    Servicios
                 </div>
             </div>
             <div class="items" ng-click="ClicItem('ConfigTipoPoblacion')">
@@ -44,7 +44,7 @@
                     <img src="image/confTipoPoblacion.png" alt="" style="width: 30px; height: 30px"/>
                 </div>
                 <div class="subitem">
-                 Config Tipo Población
+                    Config Tipo Población
                 </div>
             </div>
             <div class="items" ng-click="ClicItem('AsigServicios')">
@@ -52,7 +52,7 @@
                     <img src="image/relacionUsuarioServicio.png" alt="" style="width: 30px; height: 30px"/>
                 </div>
                 <div class="subitem">
-                   Asignación de Servicios
+                    Asignación de Servicios
                 </div>
             </div>
             <div class="items" ng-click="ClicItem('Usuarios')">
@@ -68,7 +68,7 @@
                     <img src="image/confiTurnosPerdidos.png" alt="" style="width: 25px; height: 25px"/>
                 </div>
                 <div class="subitem">
-                Config. de Turnos Perdidos
+                    Config. de Turnos Perdidos
                 </div>
             </div>
             <div class="items" ng-click="ClicItem('Reportes')">
@@ -79,7 +79,7 @@
                     Reportes
                 </div>
             </div>
-             <div class="items" ng-click="ClicItem('ConfigTv')">
+            <div class="items" ng-click="ClicItem('ConfigTv')">
                 <div class="icono">
                     <img src="image/confiVisualizador.png" alt="" style="width: 25px; height: 25px"/>
                 </div>
@@ -91,27 +91,37 @@
 
         </div>
 
-      <div class="paneldere">
+        <div class="paneldere">
             <div class="subtituloDerecha">
-                <h5>Modulo</h5>
+                <div class="divModuloP">
+                    <h5>Modulo</h5>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-outline-primary"  data-toggle="modal" data-target="#modalComprarModulo" >COMPRAR MODULOS</button>
+                </div>
             </div>
-          <div class="panelgranModulo">
+            
+            <!--ALERTAS-->
+            <div class="alert {{tipoAlerta}} alert-dismissible fade show" ng-show="MostrarAlerta" role="alert">
+                <strong>ALERTA!</strong> {{alerta}}
+                <button type="button" class="close" ng-click="cerrarAlerta()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="panelgranModulo">
 
                 <div class="panelAribaModulo">
 
                     <div class="input-group mb-3 imputModulo">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Nombre del Modulo</span>
+                            <span class="input-group-text" id="basic-addon1">Numero del Modulo</span>
                         </div>
-                        <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                        <input type="text" class="form-control" ng-model="NModulo" aria-label="Username" aria-describedby="basic-addon1">
                         <div class="butModulo">
-                        <button type="button" class="btn btn-outline-success">Guardar</button>
+                            <button type="button" ng-click="guardarModulo()" class="btn btn-outline-success">Guardar</button>
+                        </div>
                     </div>
-                    <div class="butModulo">
-                        <button type="button" class="btn btn-secondary">Limpiar</button>
-                    </div>
-                    </div>
-                    
+
 
                 </div>
 
@@ -119,28 +129,76 @@
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>
-                                <th scope="col">Nombre Modulo</th>
+                                <th scope="col">Modulo</th>
                                 <th scope="col">OPCIONES</th>
 
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
+                            <tr ng-repeat="mod in modulo">
+                                <th scope="row">{{mod.IdModulo}}</th>
                                 <td>
-                                    <button type="button" class="btn btn-outline-primary">Editar</button>
-                                     <button type="button" class="btn btn-outline-danger">Eliminar</button>
+                                    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal" ng-click="EliminarModulo(mod.IdModulo, 'var')">Eliminar</button>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-          
+
         </div>
 
     </div>
 
 </div>
 
+
+
+
+
+
+
+
+<!--MODAL PARA ELIMINAR MODULO-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">ELIMINAR</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p> ELIMINAR MODULO {{moduloEliminar}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="EliminarModulo(1, 'Eliminar')">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--MODAL PARA COMPRAR MAS MODULOS-->
+<div class="modal fade" id="modalComprarModulo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">COMPRAR MODULOS</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Si usted desea agregar mas modulos, comuniquese con su asesor</p>
+                <p>Telefono: 132313413234</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <a href="http://www.ingetronik.com" target="_blank" class="btn btn-primary" >IR A PAGINA INGETRONIK</a>
+            </div>
+        </div>
+    </div>
+</div>
 

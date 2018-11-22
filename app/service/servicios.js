@@ -7,12 +7,8 @@ servicios.$inject = ['$http', 'urlBase', '$httpParamSerializerJQLike'];
         return $http.post(urlBase + 'login.php', $httpParamSerializerJQLike(data));
     };
     
-    this.ConfigSistema = (data) => {
-        return $http.post(urlBase + 'ConfigSistema.php', $httpParamSerializerJQLike(data));
-    };
-    
-     this.MenuCalificar = (data) => {
-        return $http.post(urlBase + 'MenuCalificar.php', $httpParamSerializerJQLike(data));
+    this.Modulo = (data) => {
+        return $http.post(urlBase + 'Modulo.php', $httpParamSerializerJQLike(data));
     };
     
     /*this.logout = ($sessionStorage, $scope) => {
