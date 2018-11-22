@@ -22,6 +22,7 @@ angular.module('Personeria').config(['$stateProvider', '$urlRouterProvider', '$l
                         ]);
                     }]
             }
+            
         }).state('dashboard', {
             url: '/dashboard',
             templateUrl: 'app/template/dashboard.html',
@@ -177,6 +178,22 @@ angular.module('Personeria').config(['$stateProvider', '$urlRouterProvider', '$l
                                 serie: true,
                                 files: [
                                     'app/controller/ConfigTvController.js'
+                                ]
+                            }
+                        ]);
+                    }]
+            }
+        }).state('Mando', {
+            url: '/Mando',
+            templateUrl: 'app/template/Mando.html',
+            controller: 'MandoController',
+            resolve: {
+                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            {
+                                serie: true,
+                                files: [
+                                    'app/controller/MandoController.js'
                                 ]
                             }
                         ]);
