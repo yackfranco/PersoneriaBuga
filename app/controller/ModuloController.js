@@ -29,7 +29,7 @@ function InitController($scope, $state, $sessionStorage, servicios) {
             datos = {accion: "guardarModulo", numModulo: $scope.NModulo};
             servicios.Modulo(datos).then(function success(response) {
                 console.log(response.data);
-                $('.alert').alert();
+//                $('.alert').alert();
                 if (response.data.respuesta == "El Modulo se ha guardado Correctamente") {
                     $scope.alerta = response.data.respuesta;
                     $scope.tipoAlerta = "alert-success";

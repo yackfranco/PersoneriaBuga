@@ -11,6 +11,11 @@ servicios.$inject = ['$http', 'urlBase', '$httpParamSerializerJQLike'];
         return $http.post(urlBase + 'Modulo.php', $httpParamSerializerJQLike(data));
     };
     
+    
+    this.Servicios = (data) => {
+        return $http.post(urlBase + 'Servicios.php', $httpParamSerializerJQLike(data));
+    };
+    
     /*this.logout = ($sessionStorage, $scope) => {
       delete $sessionStorage.data_user;
       $scope.$parent.show = true;

@@ -96,59 +96,74 @@
             <div class="subtituloDerecha">
                 <h5>Servicios</h5>
             </div>
+             <!--ALERTAS-->
+                <div class="alert {{tipoAlerta}} alert-dismissible fade show" ng-show="MostrarAlerta" role="alert">
+                    <strong>ALERTA!</strong> {{alerta}}
+                    <button type="button" class="close" ng-click="cerrarAlerta()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
             <div class="panelgrandeServicio">
+               
                 <div class="minipanelServicio">
 
-                    <form>
+                    <form ng-submit="guardarServicio()">
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label labelListaServicio">Servicio</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="inputEmail3">
+                                <input type="text" ng-model="serv.nombreServicio" class="form-control" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Prefijo</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="inputPassword3" >
+                                <input type="text" ng-model="serv.Prefijo"  class="form-control"  required>
                             </div>
                         </div>
-                         <div class="form-group row">
-                            <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Conteo Minimo</label>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label labelListaServicio">Conteo Minimo</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="inputPassword3">
+                                <input type="text" ng-model="serv.ConteoMinimo"  class="form-control" required>
                             </div>
                         </div>
-                         <div class="form-group row">
-                            <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Conteo Maximo</label>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label labelListaServicio">Conteo Maximo</label>
                             <div class="col-sm-8">
-                                <input type="password" class="form-control" id="inputPassword3" >
+                                <input type="text" ng-model="serv.ConteoMaximo"  class="form-control" required>
                             </div>
                         </div>
-                         <div class="form-group row">
-                            <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Secuencia</label>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label labelListaServicio">Secuencia</label>
                             <div class="col-sm-8">
-                                <input type="password" class="form-control" id="inputPassword3" >
+                                <input type="text" ng-model="serv.Secuencia"  class="form-control"  required>
                             </div>
                         </div>
-                         <div class="form-group row">
-                            <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Prioridad</label>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label labelListaServicio">Prioridad</label>
                             <div class="col-sm-8">
-                                <input type="password" class="form-control" id="inputPassword3" >
+                                <select class="form-control" ng-model="serv.prioridad" required>
+                                    <option value="">Seleccione</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                </select>
                             </div>
                         </div>
-                         <div class="form-group row">
+                        <div class="form-group row">
                             <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">TV</label>
                             <div class="col-sm-8">
-                                <input type="password" class="form-control" id="inputPassword3">
+                                <select class="form-control"  ng-model="serv.tv" required>
+                                    <option value="">Seleccione</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">TODOS</option>
+                                </select>
                             </div>
                         </div>
-                        
+
                         <div class="form-group botonesServicio">
                             <div class="col-sm-10">
                                 <button type="submit" class="btn btn-primary">Guardar</button>
-                            </div>
-                            <div class="col-sm-10">
-                                <button class="btn btn-primary">Limpiar</button>
                             </div>
                         </div>
                     </form>
@@ -157,31 +172,138 @@
                 </div>
                 <div class="minipanelServicio">
                     <table class="table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">SERVICIO</th>
-                            <th scope="col">OPCIONES</th>
-                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">SERVICIO</th>
+                                <th scope="col">OPCIONES</th>
 
-                        </tr>
-                    </tbody>
-                </table>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="ser in servicio track by ser.IdServicio">
+                                <th scope="row" class="infotablaServicio">{{ser.Servicio}}</th>
+                                <td>
+                                    <button type="button" class="btn btn-outline-primary" ng-click="EditarServicio(ser.IdServicio)" data-toggle="modal" data-target="#exampleModal">Editar</button>
+                                    <button type="button" class="btn btn-outline-danger" ng-click="EliminarServicio(ser.IdServicio, ser.Servicio, 'var')" data-toggle="modal" data-target="#eliminarServicio" >Eliminar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>    
             </div>
         </div>
-
-
     </div>
+</div>
 
+
+
+
+
+
+<!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+
+
+<!--MODAL PARA EDITAR SERVICIO-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">EDITAR</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+
+                    <form ng-submit="FormEditarServicio()">
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label labelListaServicio">Servicio</label>
+                            <div class="col-sm-8">
+                                <input type="text" ng-model="servEditar.Servicio" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Prefijo</label>
+                            <div class="col-sm-8">
+                                <input type="text" ng-model="servEditar.Prefijo" class="form-control"  required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Conteo Minimo</label>
+                            <div class="col-sm-8">
+                                <input type="text" ng-model="servEditar.Cmin" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label  class="col-sm-4 col-form-label labelListaServicio">Conteo Maximo</label>
+                            <div class="col-sm-8">
+                                <input type="text" ng-model="servEditar.Cmax" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label  class="col-sm-4 col-form-label labelListaServicio">Secuencia</label>
+                            <div class="col-sm-8">
+                                <input type="text" ng-model="servEditar.Secuencia" class="form-control"  required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label  class="col-sm-4 col-form-label labelListaServicio">Prioridad</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" ng-model="servEditar.prioridad" required>
+                                    <option value="">Seleccione</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">TV</label>
+                            <div class="col-sm-8">
+                                <select class="form-control"  ng-model="servEditar.tv" required>
+                                    <option value="">Seleccione</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">TODOS</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">GUARDAR EDICIÓN</button>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--MODAL PARA ELIMINAR SERVICIO-->
+<div class="modal fade" id="eliminarServicio" tabindex="-1" role="dialog" aria-labelledby="eliminarServicio" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">ELIMINAR</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p> ELIMINAR SERVICIO {{ServicioEliminar}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="EliminarServicio(1, '', 'Eliminar')">Eliminar</button>
+            </div>
+        </div>
+    </div>
 </div>
