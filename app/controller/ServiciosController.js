@@ -15,7 +15,7 @@ function InitController($scope, $state, $sessionStorage, servicios) {
 
     $scope.serv = {};
     $scope.servEditar = {};
-    $scope.MostrarAlerta = true;
+    $scope.MostrarAlerta = false;
 
     function llenarTabla() {
         datos = {accion: "cargarTabla"};
@@ -90,6 +90,9 @@ function InitController($scope, $state, $sessionStorage, servicios) {
         servicios.Servicios($scope.servEditar).then(function success(response) {
             if (response.data.respuesta == "Editado Correctamente") {
                 console.log("EDITADO");
+                $scope.alerta = response.data.respuesta;
+                $scope.tipoAlerta = "alert-success";
+                $scope.MostrarAlerta = true;
                 llenarTabla();
                 $('#exampleModal').modal('hide');
             }

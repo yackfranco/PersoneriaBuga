@@ -24,7 +24,7 @@
             </div>
             <div class="items" ng-click="ClicItem('Modulo')">
                 <div class="icono">
-                    <img src="image/Monitoreo General.png" alt="" style="width: 25px; height: 25px"/>
+                    <img src="image/modulo.png" alt="" style="width: 25px; height: 25px"/>
                 </div>
                 <div class="subitem">
                     Modulo
@@ -32,7 +32,7 @@
             </div>
             <div class="items" ng-click="ClicItem('Servicios')">
                 <div class="icono">
-                    <img src="image/ActivarAlarma.png" alt="" style="width: 25px; height: 25px"/>
+                    <img src="image/servicio.png" alt="" style="width: 25px; height: 25px"/>
                 </div>
                 <div class="subitem">
                     Servicios
@@ -41,7 +41,7 @@
             <div class="items" ng-click="ClicItem('ConfigTipoPoblacion')">
                 <div class="icono">
                     <!--icono-->
-                    <img src="image/ConfigSistema.png" alt="" style="width: 30px; height: 30px"/>
+                    <img src="image/confTipoPoblacion.png" alt="" style="width: 30px; height: 30px"/>
                 </div>
                 <div class="subitem">
                     Config Tipo Población
@@ -49,7 +49,7 @@
             </div>
             <div class="items" ng-click="ClicItem('AsigServicios')" style="background-color: #b9bbbe; font-weight: bold;">
                 <div class="icono">
-                    <img src="image/prueba.png" alt="" style="width: 30px; height: 30px"/>
+                    <img src="image/relacionUsuarioServicio.png" alt="" style="width: 30px; height: 30px"/>
                 </div>
                 <div class="subitem">
                     Asignación de Servicios
@@ -57,7 +57,7 @@
             </div>
             <div class="items" ng-click="ClicItem('Usuarios')">
                 <div class="icono">
-                    <img src="image/usuarios.png" alt="" style="width: 25px; height: 25px"/>
+                    <img src="image/crearUsuario.png" alt="" style="width: 25px; height: 25px"/>
                 </div>
                 <div class="subitem">
                     Usuarios 
@@ -65,7 +65,7 @@
             </div>
             <div class="items" ng-click="ClicItem('ConfigTurnosPerdidos')">
                 <div class="icono">
-                    <img src="image/alarmaPersonal.png" alt="" style="width: 25px; height: 25px"/>
+                    <img src="image/confiTurnosPerdidos.png" alt="" style="width: 25px; height: 25px"/>
                 </div>
                 <div class="subitem">
                     Config. de Turnos Perdidos
@@ -81,7 +81,7 @@
             </div>
             <div class="items" ng-click="ClicItem('ConfigTv')">
                 <div class="icono">
-                    <img src="image/reportes.png" alt="" style="width: 25px; height: 25px"/>
+                    <img src="image/confiVisualizador.png" alt="" style="width: 25px; height: 25px"/>
                 </div>
                 <div class="subitem">
                     ConfigTv
@@ -101,34 +101,28 @@
 
                 <div class="IzquierdaAsigServicio">
                     <div class="ArribaAsigServicio">
-                        <label for="exampleFormControlSelect1">Example select</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                        <label for="exampleFormControlSelect1">USUARIOS</label>
+                        <select class="form-control" ng-change="UsuarioSeleccionado()" ng-model="usuarioSelect">
+                            <option ng-repeat="usu in usuarios" ng-value="{{usu.IdUsuario}}">{{usu.NombreUsuario}}</option>
                         </select>
                     </div>
                     <div class="AbajoAsigServicio">
+                        <div>
+                            <label for="exampleFormControlSelect1">SERVICIOS ASIGNADOS</label>
+                        </div>
                         <table class="table">
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">SERVICIO</th>
                                     <th scope="col">OPCIONES</th>
-
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-
+                                <tr ng-repeat="serR in ServicioRelacionado"> 
+                                    <th scope="row" class="infotablaServicio">{{serR.Servicio}}</th>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-danger" ng-click="EliminarServicio(serR.IdServicio)">Eliminar</button>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -136,6 +130,9 @@
                 </div>
 
                 <div class="DerechaAsigServicio">
+                    <div>
+                        <label for="exampleFormControlSelect1">SERVICIOS <b>NO</b> ASIGNADOS</label>
+                    </div>
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>
@@ -145,15 +142,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-
+                            <tr ng-repeat="serNR in ServicioNoRelacionado"> 
+                                <th scope="row" class="infotablaServicio">{{serNR.Servicio}}</th>
+                                <td>
+                                    <button type="button" class="btn btn-outline-primary" ng-click="AgregarServicio(serNR.IdServicio)">Agregar</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

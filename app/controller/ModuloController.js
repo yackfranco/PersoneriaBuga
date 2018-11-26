@@ -34,6 +34,7 @@ function InitController($scope, $state, $sessionStorage, servicios) {
                     $scope.alerta = response.data.respuesta;
                     $scope.tipoAlerta = "alert-success";
                     $scope.MostrarAlerta = true;
+                    $scope.NModulo = "";
                     llenarTabla();
                 } else {
                     $scope.alerta = response.data.respuesta;

@@ -7,7 +7,7 @@ include 'conexion.php';
 $accion = $_REQUEST["accion"];
 
 if ($accion == "cargarTabla") {
-    $arreglo = DevolverUnArreglo("SELECT * from modulo");
+    $arreglo = DevolverUnArreglo("SELECT * from modulo order by IdModulo ASC");
     if ($arreglo == null) {
         http_response_code(401);
         $validar = [];
@@ -28,6 +28,7 @@ if ($accion == "guardarModulo") {
         if ($cont < 10) {
             $esta = DevolverUnDato("select count(*) from modulo where IdModulo = $numModulo");
             if ($esta > 0) {
+              
                 $validar = array('respuesta' => "Este modulo Ya esta Registrado");
             } else {
                 try {
