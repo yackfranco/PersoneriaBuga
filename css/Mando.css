@@ -45,10 +45,10 @@
 }
 
 .labelMando{
-/*    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;*/
-/*    justify-content: flex-start;*/
+    display: flex;
+    flex-direction: column;
+    /*flex-wrap: wrap;*/
+    justify-content: flex-start;
     width: 100%;
     height: 100%;
 }
@@ -64,8 +64,78 @@
     padding-left: 20px;
 }
 .algo2{
-     text-align: right;
+    text-align: right;
     width: 50%;
     padding-right: 20px;
 }
 
+.arriba2Mando{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px; 
+    border-style: solid;
+    border-width:0px 0px 1px 0px;
+    border-color: #b9bbbe;
+    /*background-color: blue;*/
+}
+
+.Abajo2Mando{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px; 
+    border-color: #b9bbbe;
+    /*background-color: black;*/
+}
+
+.letramando{
+    font-size: 40px;
+}
+
+.botonesSINOMANDO{
+    width: 100%;    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px; 
+    border-color: #b9bbbe;
+    /*background-color: black;*/
+}
+
+.boton1Mando{
+    width: 100px;
+    margin: 10px;
+}
+
+.boton2Mando{
+    width: 200px;
+    /*margin: 30px;*/
+}
+.logo2empMando{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+}
+.botonP2{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+}
+.logomagiturno{
+     width: 150px;
+     height: 40px;
+}

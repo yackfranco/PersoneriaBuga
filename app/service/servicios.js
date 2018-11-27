@@ -23,7 +23,14 @@ servicios.$inject = ['$http', 'urlBase', '$httpParamSerializerJQLike'];
      this.ConfigTurnosPerdidos = (data) => {
         return $http.post(urlBase + 'ConfigTurnosPerdidos.php', $httpParamSerializerJQLike(data));
     };
+     this.TipoPoblacion = (data) => {
+        return $http.post(urlBase + 'TipoPoblacion.php', $httpParamSerializerJQLike(data));
+    };
     
+      this.Usuarios = (data) => {
+        return $http.post(urlBase + 'Usuarios.php', $httpParamSerializerJQLike(data));
+    };
+
     /*this.logout = ($sessionStorage, $scope) => {
       delete $sessionStorage.data_user;
       $scope.$parent.show = true;

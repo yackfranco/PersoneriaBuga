@@ -96,7 +96,14 @@
             <div class="subtituloDerecha">
                 <h5> Configuración del Tipo de Población</h5>
             </div>
-
+            <!--ALERTAS-->
+            <div class="alert {{tipoAlerta}} alert-dismissible fade show" ng-show="MostrarAlerta" role="alert">
+                <strong>ALERTA!</strong> {{alerta}}
+                <button type="button" class="close" ng-click="cerrarAlerta()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            
             <div class="panelgrandConfigTipoPoblacion">
 
                 <div class="panelAribaConfigTipoPoblacion">
@@ -105,13 +112,10 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">Tipo de Población</span>
                         </div>
-                        <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                        <input type="text" class="form-control" ng-model="NPoblacion" aria-label="Username" aria-describedby="basic-addon1">
                         <div class="butTP">
-                        <button type="button" class="btn btn-secondary">Secondary</button>
-                    </div>
-                    <div class="butTP">
-                        <button type="button" class="btn btn-secondary">Secondary</button>
-                    </div>
+                            <button type="button" ng-click="guardarPoblacion()" class="btn btn-outline-success">Guardar</button>
+                        </div>
                     </div>
                     
 
@@ -121,21 +125,17 @@
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>
-                                <th scope="col">SERVICIO</th>
+                                <th scope="col">TIPO POBLACIÓN</th>
                                 <th scope="col">OPCIONES</th>
 
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-
+                            <tr ng-repeat="tpoblacion in poblacion">
+                                <th scope="row">{{tpoblacion.TipoPoblacion}}</th>
+                                <td>
+                                    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal" ng-click="EliminarPoblacion(tpoblacion.IdPoblacion, 'var')">Eliminar</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -149,29 +149,22 @@
 
 
 
-
-<!--MODAL EDITAR AREA-->
-<div class="modal fade" id="editarArea" tabindex="-1" role="dialog" aria-labelledby="editarArea" aria-hidden="true">
+<!--MODAL PARA ELIMINAR Poblacion-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">EDITAR  AREA</h5>
-                <!--<h5 ng-show="false" class="modal-title" id="exampleModalLabel">Codigo = "{{idArea}}"</h5>-->
+                <h5 class="modal-title">ELIMINAR</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-sizing-default">Nuevo Nombre</span>
-                    </div>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" ng-model="ModelArea">
-                </div>
+                <p> ELIMINAR POBLACIÓN {{PoblacionEliminar}}</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" ng-click="ConfirmarEditarArea()">Guardar Cambios</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="EliminarPoblacion(1, 'Eliminar')">Eliminar</button>
             </div>
         </div>
     </div>

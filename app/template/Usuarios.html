@@ -27,7 +27,7 @@
                     <img src="image/modulo.png" alt="" style="width: 25px; height: 25px"/>
                 </div>
                 <div class="subitem">
-                 Modulo
+                    Modulo
                 </div>
             </div>
             <div class="items" ng-click="ClicItem('Servicios')">
@@ -35,7 +35,7 @@
                     <img src="image/servicio.png" alt="" style="width: 25px; height: 25px"/>
                 </div>
                 <div class="subitem">
-                   Servicios
+                    Servicios
                 </div>
             </div>
             <div class="items" ng-click="ClicItem('ConfigTipoPoblacion')">
@@ -44,7 +44,7 @@
                     <img src="image/confTipoPoblacion.png" alt="" style="width: 30px; height: 30px"/>
                 </div>
                 <div class="subitem">
-                   Config Tipo Población
+                    Config Tipo Población
                 </div>
             </div>
             <div class="items" ng-click="ClicItem('AsigServicios')">
@@ -52,7 +52,7 @@
                     <img src="image/relacionUsuarioServicio.png" alt="" style="width: 30px; height: 30px"/>
                 </div>
                 <div class="subitem">
-                   Asignación de Servicios
+                    Asignación de Servicios
                 </div>
             </div>
             <div class="items" ng-click="ClicItem('Usuarios')" style="background-color: #b9bbbe; font-weight: bold;">
@@ -68,7 +68,7 @@
                     <img src="image/confiTurnosPerdidos.png" alt="" style="width: 25px; height: 25px"/>
                 </div>
                 <div class="subitem">
-                 Config. de Turnos Perdidos
+                    Config. de Turnos Perdidos
                 </div>
             </div>
             <div class="items" ng-click="ClicItem('Reportes')">
@@ -79,7 +79,7 @@
                     Reportes
                 </div>
             </div>
-             <div class="items" ng-click="ClicItem('ConfigTv')">
+            <div class="items" ng-click="ClicItem('ConfigTv')">
                 <div class="icono">
                     <img src="image/confiVisualizador.png" alt="" style="width: 25px; height: 25px"/>
                 </div>
@@ -96,122 +96,177 @@
             <div class="subtituloDerecha">
                 <h5>Usuarios</h5>
             </div>
-
-            <div class="p1">
-                <div class="personausuario">
-                    <div>
-                        <label for="exampleInputEmail1">Nombre Completo</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
-                    </div>
-                    <div>
-                        <label for="exampleInputEmail1">Cedula</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
-                    </div>
-                    <div>
-                        <label for="exampleInputEmail1">Correo Electronico</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
-                    </div>
-                </div>
-                <div class="usuariousuario">
-                    <div>
-                        <label for="exampleInputEmail1">Nombre Usuario</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
-                    </div>
-                    <div>
-                        <label for="exampleInputEmail1">Rol</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
-                    </div>
-                    <div>
-                        <label for="exampleInputEmail1">Contraseña</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
-                    </div>
-                </div>
-            </div >
-            <div class="pbotones">
-                <div class="but">
-                    <button type="button" class="btn btn-success">CREAR</button>
-                </div>
-                <div class="but">
-                    <button type="button" class="btn btn-success">LIMPIAR</button>
-                </div>
+            <!--ALERTAS-->
+            <div class="alert {{tipoAlerta}} alert-dismissible fade show" ng-show="MostrarAlerta" role="alert">
+                <strong>ALERTA!</strong> {{alerta}}
+                <button type="button" class="close" ng-click="cerrarAlerta()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+            <form ng-submit="guardarUsuario()">
+                <div class="p1">
+                    <div class="personausuario">
+
+
+                        <div>
+                            <label for="exampleInputEmail1">Nombre Completo</label>
+                            <input type="text" ng-model="usu.NombreCompleto" class="form-control" required>
+                        </div>
+                        <div>
+                            <label for="exampleInputEmail1">Cedula</label>
+                            <input type="text" ng-model="usu.Cedula" class="form-control" required>
+                        </div>
+                        <div>
+                            <label for="exampleInputEmail1">Correo Electronico</label>
+                            <input type="email" ng-model="usu.Correo" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="usuariousuario">
+                        <div>
+                            <label for="exampleInputEmail1">Nombre Usuario</label>
+                            <input type="text" ng-model="usu.NombreUsuario" class="form-control" required>
+                        </div>
+                        <div>
+                            <label for="exampleFormControlSelect1">Rol</label>
+                            <select class="form-control" ng-model="usu.Rol" required>
+                                <option value="ASESOR">ASESOR</option>
+                                <option value="ADMINISTRADOR">ADMINISTRADOR</option>
+
+                            </select>
+                        </div>
+                        <div>
+                            <label for="exampleInputEmail1">Contraseña</label>
+                            <input type="password" ng-model="usu.Contrasena" class="form-control" required>
+                        </div>
+                    </div>
+                </div >
+                <div class="pbotones">
+                    <div class="but">
+                        <button type="submit" class="btn btn-success">CREAR</button>
+                    </div>
+                </div>
+            </form>
             <div class="p2">
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col">NOMBRE</th>
+                            <th scope="col">CEDULA</th>
+                            <th scope="col">CORREO</th>
+                            <th scope="col">USUARIO</th>
+                            <th scope="col">ROL</th>
+                            <th scope="col">OPCIONES</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
+                        <tr ng-repeat="usu in usuario">
+                            <th scope="row" class="infotablaServicio">{{usu.NombreCompleto}}</th>
+                            <th scope="row" class="infotablaServicio">{{usu.Cedula}}</th>
+                            <th scope="row" class="infotablaServicio">{{usu.Correo}}</th>
+                            <th scope="row" class="infotablaServicio">{{usu.NombreUsuario}}</th>
+                            <th scope="row" class="infotablaServicio">{{usu.Rol}}</th>
+
+                            <td>
+                                <button type="button" class="btn btn-outline-primary" ng-click="EditarUsuario(usu.IdUsuario)" data-toggle="modal" data-target="#exampleModal">Editar</button>
+                                <button type="button" class="btn btn-outline-danger" ng-click="EliminarUsuario(usu.IdUsuario, usu.NombreUsuario, 'var')" data-toggle="modal" data-target="#eliminarUsuario" >Eliminar</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-
-
     </div>
+</div>
 
+
+<!--MODAL PARA EDITAR USUARIO-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">EDITAR</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+
+                    <form ng-submit="FormEditarUsuario()">
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label labelListaServicio">Nombre Completo</label>
+                            <div class="col-sm-8">
+                                <input type="text" ng-model="usuEditar.NombreCompleto" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Cedula</label>
+                            <div class="col-sm-8">
+                                <input type="text" ng-model="usuEditar.Cedula" class="form-control"  required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Correo</label>
+                            <div class="col-sm-8">
+                                <input type="text" ng-model="usuEditar.Correo" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label  class="col-sm-4 col-form-label labelListaServicio">Usuario</label>
+                            <div class="col-sm-8">
+                                <input type="text" ng-model="usuEditar.Usuario" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label  class="col-sm-4 col-form-label labelListaServicio">Rol</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" ng-model="usuEditar.Rol" required>
+                                    <option value="ASESOR">ASESOR</option>
+                                    <option value="ADMINISTRADOR">ADMINISTRADOR</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label  class="col-sm-4 col-form-label labelListaServicio">Contraseña</label>
+                            <div class="col-sm-8">
+                                <input type="text" ng-model="usuEditar.Contrasena" class="form-control"  required>
+                            </div>
+                        </div>
+
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">GUARDAR EDICIÓN</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--MODAL PARA ELIMINAR USUARIO-->
+<div class="modal fade" id="eliminarUsuario" tabindex="-1" role="dialog" aria-labelledby="eliminarUsuario" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">ELIMINAR</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p> ELIMINAR Usuario {{UsuarioEliminar}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="EliminarUsuario(1, 1, 'Eliminar')">Eliminar</button>
+            </div>
+        </div>
+    </div>
 </div>
