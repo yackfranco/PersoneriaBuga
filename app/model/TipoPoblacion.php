@@ -8,32 +8,25 @@ $accion = $_REQUEST["accion"];
 
 if ($accion == "cargarTabla") {
     $arreglo = DevolverUnArreglo("SELECT * from poblacion");
-    if ($arreglo == null) {
-        http_response_code(401);
-        $validar = [];
-    } else {
-//    $validar = array('id' => $arreglo);
-        $validar = array('poblacion' => $arreglo);
-    }
+    $validar = array('poblacion' => $arreglo);
 }
 
 
 if ($accion == "guardarpoblacion") {
     $poblacion = $_REQUEST["poblacion"];
-  
+
     $esta = DevolverUnDato("select count(*) from poblacion where TipoPoblacion = '$poblacion'");
-            if ($esta > 0) {
-                $validar = array('respuesta' => "Este tipo de población ya esta Registrado");
-            } else {
-                try {
-                    hacerConsulta("insert into poblacion (TipoPoblacion) values ('$poblacion')");
-                    $validar = array('respuesta' => "El tipo de poblacion se ha guardado Correctamente");
-                } catch (Exception $ex) {
-                    $validar = array('respuesta' => "Error al guardar en Base de Datos");
-                }
-            }
-        
-    } 
+    if ($esta > 0) {
+        $validar = array('respuesta' => "Este tipo de población ya esta Registrado");
+    } else {
+        try {
+            hacerConsulta("insert into poblacion (TipoPoblacion) values ('$poblacion')");
+            $validar = array('respuesta' => "El tipo de poblacion se ha guardado Correctamente");
+        } catch (Exception $ex) {
+            $validar = array('respuesta' => "Error al guardar en Base de Datos");
+        }
+    }
+}
 
 
 

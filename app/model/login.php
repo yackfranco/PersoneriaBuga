@@ -1,22 +1,39 @@
 <?php
+
 header('Content-Type: application/json');
 header("Access-Control-Allow-Origin: *");
 include 'conexion.php';
 
-$user = $_POST["usuario"];
-$contra = $_POST["contrasena"];
-//echo "HOLA";
-//print_r($contra);
+$accion = $_REQUEST["accion"];
 
-
-$arreglo = DevolverUnArreglo("SELECT * from usuario where NombreUsuario='$user' and Contrasena = '".hash('MD5', $contra)."'");
-if($arreglo == null){
-    http_response_code(401);
-    $validar = [];
-}else {
-//    $validar = array('id' => $arreglo);
-        $validar = $arreglo;
+if ($accion == "cargarUsuarios") {
+    $arreglo = DevolverUnArreglo("SELECT * from usuario");
+    $validar = $arreglo;
 }
+
+if ($accion == "cargarModulos") {
+    $arreglo = DevolverUnArreglo("SELECT * from modulo order by Idmodulo asc");
+    $validar = $arreglo;
+}
+
+if ($accion == "traerRol") {
+    $idusuario = $_REQUEST["idUsuario"];
+    $arreglo = DevolverUnDato("SELECT rol from usuario where IdUsuario = $idusuario");
+    $validar = $arreglo;
+}
+
+
+if ($accion == "entrar") {
+    $user = $_POST["usuario"];
+    $user = DevolverUnDato("select NombreUsuario from usuario where IdUsuario = $user");
+    $contra = $_POST["contrasena"];
+    $consulta = "SELECT * from usuario where NombreUsuario='$user' and Contrasena = '" . hash('MD5', $contra) . "'";
+//    echo $consulta;
+//    exit();
+    $arreglo = DevolverUnArreglo($consulta);
+    $validar = $arreglo;
+}
+
 
 echo json_encode($validar, JSON_FORCE_OBJECT);
 ?>

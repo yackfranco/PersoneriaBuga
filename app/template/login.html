@@ -1,15 +1,43 @@
+<div class="panelPrincipal">
+    <form class="form-signin" ng-submit="submitLogin()">
+        <div >
+            <h1 class="h3 mb-3 font-weight-normal">LOGIN</h1>
+        </div>
+            
+        <div class="panelUsuario">
+            Seleccione el Usuario
+            <select class="form-control" ng-change="UsuarioSeleccionado()" ng-model="usuario.usuario" >
+                <option ng-repeat="usu in usuarios" ng-value="{{usu.IdUsuario}}">{{usu.NombreUsuario}}</option>
+            </select>
+        </div>
+        <input type="password" ng-model="usuario.contrasena" class="form-control" placeholder="Digite la contraseña" required>
+        <div class="panelUsuario" ng-show="mostrarModulo">
+            <select class="form-control" ng-change="ModuloSeleccionado()" ng-model="usuario.modulo" >
+                <option ng-repeat="mod in modulos" ng-value="{{mod.IdModulo}}">{{mod.IdModulo}}</option>
+            </select>
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+        <p class="mt-5 mb-3 text-muted">Portal</p>
+        <div ng-show="loginError" class="alert alert-danger">Datos de usuario invalidos</div>
+    </form>
+</div>
+<!--
 <form class="form-signin" ng-submit="submitLogin()">
     <h1 class="h3 mb-3 font-weight-normal">LOGIN</h1>
-                <input type="text" ng-model="usuario.usuario" class="form-control"
-                        placeholder="Digite usuario" required autofocus> <input
-                        type="password" ng-model="usuario.contrasena" class="form-control"
-                        placeholder="Digite la contraseña" required>
-       
+    <div class="sa">
+        <select class="form-control usuarioSeleccionado" ng-change="UsuarioSeleccionado()" ng-model="usuario.usuario" >
+        <option ng-repeat="usu in usuarios" ng-value="{{usu.IdUsuario}}">{{usu.NombreUsuario}}</option>
+    </select>
+    </div>
+    
+    <input type="password" ng-model="usuario.contrasena" class="form-control" placeholder="Digite la contraseña" required>
+
     <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
     <p class="mt-5 mb-3 text-muted">Portal</p>
     <div ng-show="loginError" class="alert alert-danger">Datos de usuario invalidos</div>
-</form>
-  
+</form>-->
+
 <!--<div class="centered">
   <div class="group">
     <input type="text" id="name" required="required"/>
@@ -17,4 +45,4 @@
     <div class="bar"></div>
   </div>
 </div>-->
-  
+
