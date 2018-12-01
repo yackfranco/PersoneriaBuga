@@ -31,33 +31,27 @@
                 </tbody>
             </table>
         </div>
-
     </div>
 
     <div class="AbajoMando">
 
         <div class="arriba2Mando">
-
-            <div class="labelMando">
-                <span class="letramando">Turno</span>
-                <span class="letramando">CR-007</span>
-                <span class="letramando">Módulo</span>
-                <span class="letramando">1</span>
+            <div class="texto2"> <span class="letramando">TURNO</span></div>
+            <div class="texto2"> <span class="letramando">{{turno}}</span></div>
+            <div class="texto2"><span class="letramando">SERVICIO</span></div>
+            <div class="texto2"><span class="letramando">{{servicio}}</span></div>
+            <div class="panelConfirmar" ng-show="ShowConfirmarTurno">
                 <h3>¿El paciente se encuentra en el momento?</h3>
-                <div class="botonesSINOMANDO">
-                    <button type="button" class="btn btn-dark boton1Mando">SI</button>
-                    <button type="button" class="btn btn-dark boton1Mando">NO</button>
-                </div>
-
+                    <div class="botonesSINOMANDO">
+                        <button type="button" ng-click="ClickSi()" class="btn btn-dark boton1Mando">SI</button>
+                        <button type="button" ng-click="ClickNo()" class="btn btn-dark boton1Mando">NO</button>
+                    </div>
             </div>
-
-
-
         </div>
 
         <div class="Abajo2Mando">
             <div class="botonP2">
-                <button type="button" class="btn btn-dark boton2Mando">DISPONIBLE</button>
+                <button type="button" class="btn btn-dark boton2Mando" ng-show="ShowDisponible" ng-click="Disponible()">DISPONIBLE</button>
             </div>
             <div  class="logo2empMando">
                 <img src="image/Logo Magiturno Website.png" alt="" class="logomagiturno"/>

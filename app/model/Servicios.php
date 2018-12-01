@@ -29,7 +29,7 @@ if ($accion == "guardarServicio") {
 
 
 //Pregunta si el numero a insertar es de tipo int
-    if (is_numeric($ConteoMinimo) && is_numeric($ConteoMaximo) && is_numeric($prioridad)) {
+    if (is_numeric($ConteoMinimo) && is_numeric($ConteoMaximo) && is_numeric($prioridad) && is_numeric($Secuencia)) {
         try {
             hacerConsulta("insert into servicio (Prefijo, Servicio,Cont_min, Cont_max, Secuencia, Prioridad, LLamadoTv, Color,ColorLetra) "
                     . "values ('$Prefijo','$nombreServicio',$ConteoMinimo,$ConteoMaximo,$Secuencia,$prioridad,$tv,'','')");

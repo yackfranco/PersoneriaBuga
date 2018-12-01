@@ -27,6 +27,7 @@ function InitController($scope, $state, $sessionStorage, servicios) {
         servicios.login($scope.usuario).then(function success(response) {
             console.log(response.data[0]);
             if(response.data[0].Rol == "ASESOR"){
+                 
                 $state.go('Mando');
             }
             else if(response.data[0].Rol == "ADMINISTRADOR"){
