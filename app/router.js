@@ -199,5 +199,21 @@ angular.module('Personeria').config(['$stateProvider', '$urlRouterProvider', '$l
                         ]);
                     }]
             }
+        }).state('Ejemplo', {
+            url: '/Ejemplo',
+            templateUrl: 'app/template/Ejemplo.html',
+            controller: 'EjemploController',
+            resolve: {
+                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            {
+                                serie: true,
+                                files: [
+                                    'app/controller/EjemploController.js'
+                                ]
+                            }
+                        ]);
+                    }]
+            }
         })
     }]);

@@ -64,3 +64,58 @@
 
 </div>
 
+
+
+<!--MODAL PARA EDITAR USUARIO-->
+<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">BUSCAR PERSONA</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+
+                    <form ng-submit="FormEditarUsuario()">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label labelListaServicio">CEDULA</label>
+                            <div class="col-sm-8">
+                                <input type="text"  ng-change="llenartabla()" ng-model="usu.Cedula" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">NOMBRE COMPLETO</th>
+                                    <th scope="col">CÉDULA</th>
+                                    <th scope="col">TELEFONO</th>
+                                    <th scope="col">OPCIONES</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="usu in usuario">
+                                    <th scope="row" class="infotablaServicio">{{usu.NombreCompleto}}</th>
+                                    <th scope="row" class="infotablaServicio">{{usu.Cedula}}</th>
+                                    <th scope="row" class="infotablaServicio">{{eje}}{{usu.Telefono}}</th>
+
+                                    <td>
+                                        <button type="button" class="btn btn-outline-danger" ng-click="EliminarUsuario(usu.IdUsuario, usu.NombreUsuario, 'var')" data-toggle="modal" data-target="#eliminarUsuario" >Eliminar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">GUARDAR EDICIÓN</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
