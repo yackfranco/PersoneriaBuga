@@ -10,23 +10,17 @@
         </div>
 
         <div class="">
-            <table class="table">
-                <thead class="thead-dark">
+            <table class="table table-striped tablaCompleta">
+                <thead class="tituloTabla">
                     <tr>
                         <th scope="col">SERVICIO</th>
                         <th scope="col">CANTIDAD</th>
-
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">Renovaciones</th>
-                        <td>12</td>
-
-                    </tr>
-                    <tr>
-                        <th scope="row">Asesoria</th>
-                        <td>10</td>
+                    <tr ng-repeat="ser in servicios">
+                        <th scope="row" class="infotablaServicio">{{ser.Servicio}}</th>
+                        <th scope="row" class="infotablaServicio">{{ser.Cantidad}}</th>
                     </tr>
                 </tbody>
             </table>
@@ -34,7 +28,6 @@
     </div>
 
     <div class="AbajoMando">
-
         <div class="arriba2Mando">
             <div class="texto2"> <span class="letramando">TURNO</span></div>
             <div class="texto2"> <span class="letramando">{{turno}}</span></div>
@@ -42,80 +35,274 @@
             <div class="texto2"><span class="letramando">{{servicio}}</span></div>
             <div class="panelConfirmar" ng-show="ShowConfirmarTurno">
                 <h3>¿El paciente se encuentra en el momento?</h3>
-                    <div class="botonesSINOMANDO">
-                        <button type="button" ng-click="ClickSi()" class="btn btn-dark boton1Mando">SI</button>
-                        <button type="button" ng-click="ClickNo()" class="btn btn-dark boton1Mando">NO</button>
-                    </div>
+                <div class="botonesSINOMANDO">
+                    <button type="button" ng-click="ClickSi()" class="btn btn-dark boton1Mando" data-toggle="modal" data-target="#exampleModal">SI</button>
+                    <button type="button" ng-click="ClickNo()" class="btn btn-dark boton1Mando">NO</button>
+                </div>
             </div>
         </div>
-
         <div class="Abajo2Mando">
             <div class="botonP2">
                 <button type="button" class="btn btn-dark boton2Mando" ng-show="ShowDisponible" ng-click="Disponible()">DISPONIBLE</button>
             </div>
             <div  class="logo2empMando">
                 <img src="image/Logo Magiturno Website.png" alt="" class="logomagiturno"/>
-
             </div>
-
         </div>
-
     </div>
-
 </div>
 
 
 
-<!--MODAL PARA EDITAR USUARIO-->
-<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!--MODAL PARA CARGAR PERSONA-->
+<div data-backdrop="static" data-keyboard="false" class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">BUSCAR PERSONA</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
-            <div class="modal-body">
-                <div>
 
+            <div class="modal-body">
+                <div class="">
                     <form ng-submit="FormEditarUsuario()">
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label labelListaServicio">CEDULA</label>
                             <div class="col-sm-8">
-                                <input type="text"  ng-change="llenartabla()" ng-model="usu.Cedula" class="form-control" required>
+                                <input type="number"  ng-change="llenartablamando()" ng-model="Cedula" class="form-control" required>
                             </div>
                         </div>
-
+                        <div class="form-group row">
+                            <div class="col-sm-12"> 
+                                <button type="button" class="btn btn-dark" ng-click="Limpiarmodalcrearpersona()" data-toggle="modal" data-target="#CrearPersonaModal">Crear Persona</button>
+                            </div>
+                        </div>
                         <table class="table">
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">NOMBRE COMPLETO</th>
                                     <th scope="col">CÉDULA</th>
-                                    <th scope="col">TELEFONO</th>
+                                    <!--<th scope="col">TELEFONO</th>-->
                                     <th scope="col">OPCIONES</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="usu in usuario">
+                                <tr ng-repeat="usu in mando">
                                     <th scope="row" class="infotablaServicio">{{usu.NombreCompleto}}</th>
                                     <th scope="row" class="infotablaServicio">{{usu.Cedula}}</th>
-                                    <th scope="row" class="infotablaServicio">{{eje}}{{usu.Telefono}}</th>
-
+                                    <!--<th scope="row" class="infotablaServicio">{{usu.Telefono}}</th>-->
                                     <td>
-                                        <button type="button" class="btn btn-outline-danger" ng-click="EliminarUsuario(usu.IdUsuario, usu.NombreUsuario, 'var')" data-toggle="modal" data-target="#eliminarUsuario" >Eliminar</button>
+                                        <button type="button" class="btn btn-outline-success" ng-click="DatosPersona(usu.IdPersona, usu.NombreCompleto)" data-toggle="modal" data-target="#EncuestaModal" >Nueva Atención</button>
+                                        <button type="button" class="btn btn-outline-info" ng-click="EditarPesona(usu.IdPersona)" data-toggle="modal" data-target="#EditarModal" >Editar Persona</button>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">GUARDAR EDICIÓN</button>
-                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
+
+
+<!--MODAL PARA ENCUESTAR PERSONA-->
+<div data-backdrop="static" data-keyboard="false" class="modal fade bd-example-modal-lg" id="EncuestaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">ENCUESTA</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <h5 class="modal-title">{{NOMBREPERSONA}}</h5>
+
+            <div class="modal-body">
+                <div>
+                    <form ng-submit="guardarEncuesta()">
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label labelListaServicio">Tipo de Población</label>
+                            <div class="col-sm-8">
+                                <!--<input type="text" ng-model="usuEncuestar.TipoPoblacion" class="form-control" required>-->
+                                <select class="form-control" ng-model="usuEncuestar.TipoPoblacion" >
+                                    <option ng-repeat="usu in Poblacion" value="{{usu.TipoPoblacion}}">{{usu.TipoPoblacion}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Nivel de Escolaridad</label>
+
+
+                            <div class="col-sm-8">
+                                <select class="form-control" ng-model="usuEncuestar.Escolaridad" required>
+                                    <option value="PRIMARIA">PRIMARIA</option>
+                                    <option value="SECUNDARIA">SECUNDARIA</option>
+                                    <option value="TECNICO">TÉCNICO</option>
+                                    <option value="TECNOLOGO">TECNÓLOGO</option>
+                                    <option value="UNIVERSITARIO">UNIVERSITARIO</option>
+                                    <option value="SUPERIOR">SUPERIOR</option>
+                                </select>
+                                <!--<input type="text" ng-model="usuEncuestar.Escolaridad" class="form-control"  required>-->
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Asunto</label>
+                            <div class="col-sm-8">
+                                <input type="text" ng-model="usuEncuestar.Asunto" class="form-control" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-outline-success">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--MODAL PARA EDITAR PERSONA-->
+<div data-backdrop="static" data-keyboard="false" class="modal fade bd-example-modal-lg" id="EditarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">EDITAR PERSONA</h5>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <form ng-submit="FormEditarPersona()">
+
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label labelListaServicio">Nombre completo</label>
+                            <div class="col-sm-8">
+                                <input type="text" ng-model="usuEditarPer.NombreCompleto" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Cédula</label>
+                            <div class="col-sm-8">
+                                <input type="text" ng-model="usuEditarPer.Cedula" class="form-control"  required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="exampleFormControlSelect1" class="col-sm-4 col-form-label labelListaServicio">Sexo</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" ng-model="usuEditarPer.Sexo" required>
+                                    <option value="MASCULINO">MASCULINO</option>
+                                    <option value="FEMENINO">FEMENINO</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Dirección</label>
+                            <div class="col-sm-8">
+                                <input type="text" ng-model="usuEditarPer.Direccion" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Barrio</label>
+                            <div class="col-sm-8">
+                                <input type="text" ng-model="usuEditarPer.Barrio" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Telefono</label>
+                            <div class="col-sm-8">
+                                <input type="text" ng-model="usuEditarPer.Telefono" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Fecha Nacimiento</label>
+                            <div class="col-sm-8">
+                                <input type="text" ng-model="usuEditarPer.Fecha" class="form-control" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-outline-success">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--MODAL PARA CREAR PERSONA-->
+<div data-backdrop="static" data-keyboard="false" class="modal fade bd-example-modal-lg" id="CrearPersonaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">CREAR PERSONA</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <!--ALERTAS-->
+            <div class="alert {{tipoAlerta}} alert-dismissible fade show" ng-show="MostrarAlerta" role="alert">
+                <strong>ALERTA!</strong> {{alerta}}
+                <button type="button" class="close" ng-click="cerrarAlerta()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <form ng-submit="guardarPersona()">
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label labelListaServicio">Nombre completo</label>
+                            <div class="col-sm-8">
+                                <input type="text" ng-model="usuInsertar.NombreCompleto" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Cédula</label>
+                            <div class="col-sm-8">
+                                <input type="number" ng-model="usuInsertar.Cedula" class="form-control"  required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="exampleFormControlSelect1" class="col-sm-4 col-form-label labelListaServicio">Sexo</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" ng-model="usuInsertar.Sexo" required>
+                                    <option value="MASCULINO">MASCULINO</option>
+                                    <option value="FEMENINO">FEMENINO</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Dirección</label>
+                            <div class="col-sm-8">
+                                <input type="text" ng-model="usuInsertar.Direccion" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Barrio</label>
+                            <div class="col-sm-8">
+                                <input type="text" ng-model="usuInsertar.Barrio" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Telefono</label>
+                            <div class="col-sm-8">
+                                <input type="number" ng-model="usuInsertar.Telefono" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Fecha Nacimiento</label>
+                            <div class="col-sm-8">
+                                <input type="text" ng-model="usuInsertar.Fecha" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-outline-success">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

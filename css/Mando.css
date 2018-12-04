@@ -1,3 +1,20 @@
+
+.ponerScroll{
+     overflow: scroll;
+}
+.tituloTabla{
+    background-color:#b9bbbe;
+   border-radius: 25px;
+}
+
+.tablaCompleta{
+    
+    border-style: solid;
+    border-width:2px 2px 2px 2px;
+    border-color: #b9bbbe;
+/*    border-radius: 25px;*/
+}
+
 .principalMando{
     width: 100vw;
     height: 100vh;
