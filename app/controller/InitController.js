@@ -6,7 +6,7 @@ function InitController($scope, $state, $sessionStorage, servicios) {
     $scope.mostrar = true;
     $scope.usuario = {};
     var datos = {};
-    $scope.mostrarModulo = false;
+    $scope.mostrarModulo = true;
 //    console.log($sessionStorage.nombreUsuario);
     datos = {accion: "cargarUsuarios"};
     servicios.login(datos).then(function success(response) {
@@ -45,10 +45,10 @@ function InitController($scope, $state, $sessionStorage, servicios) {
         datos = {accion: "traerRol", idUsuario: $scope.usuario.usuario};
         servicios.login(datos).then(function success(response) {
             if (response.data == "ASESOR") {
-                $scope.mostrarModulo = true;
+                $scope.mostrarModulo = false;
             }
             else{
-                $scope.mostrarModulo = false;
+                $scope.mostrarModulo = true;
             }
         });
 

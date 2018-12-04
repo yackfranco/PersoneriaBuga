@@ -27,6 +27,18 @@
     background-color: white;
 }
 
+.BOTONES3Diseño{
+    margin: 10px;
+    background: rgba(107,107,107,1);
+    background: -moz-linear-gradient(left, rgba(107,107,107,1) 0%, rgba(145,145,145,1) 73%, rgba(145,145,145,1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(107,107,107,1)), color-stop(73%, rgba(145,145,145,1)), color-stop(100%, rgba(145,145,145,1)));
+    background: -webkit-linear-gradient(left, rgba(107,107,107,1) 0%, rgba(145,145,145,1) 73%, rgba(145,145,145,1) 100%);
+    background: -o-linear-gradient(left, rgba(107,107,107,1) 0%, rgba(145,145,145,1) 73%, rgba(145,145,145,1) 100%);
+    background: -ms-linear-gradient(left, rgba(107,107,107,1) 0%, rgba(145,145,145,1) 73%, rgba(145,145,145,1) 100%);
+    background: linear-gradient(to right, rgba(107,107,107,1) 0%, rgba(145,145,145,1) 73%, rgba(145,145,145,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6b6b6b', endColorstr='#919191', GradientType=1 );
+}
+
 .ArribaMando{
     width: 30%;
     height: 100%;
@@ -38,9 +50,22 @@
     border-style: solid;
     border-width:0px 1px 0px 0px;
     border-color: #b9bbbe;
+    -webkit-box-shadow: 10px 10px 22px 1px rgba(0,0,0,0.27);
+    -moz-box-shadow: 10px 10px 22px 1px rgba(0,0,0,0.27);
+    box-shadow: 10px 10px 22px 1px rgba(0,0,0,0.27);
+    border-radius: 25px;
     /*background-color: blue;*/
 }
 
+.botones3{
+    width: 100%;
+    /*height: 100%;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px; 
+}
 .AbajoMando{
     width: 70%;
     height: 100%;
@@ -96,7 +121,15 @@
     padding: 10px; 
     border-style: solid;
     border-width:0px 0px 1px 0px;
-    border-color: #b9bbbe;
+    border-color: #ffffff;
+    background-color: #EFEFF2;
+    -webkit-box-shadow: 10px 10px 22px 1px rgba(0,0,0,0.27);
+    -moz-box-shadow: 10px 10px 22px 1px rgba(0,0,0,0.27);
+    box-shadow: 10px 10px 22px 1px rgba(0,0,0,0.27);
+    border-radius:25px 25px 0px 0px;
+    background-image: url("../image/bordeRojoMando2.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
 }
 
 .Abajo2Mando{
@@ -108,7 +141,15 @@
     align-items: center;
     padding: 10px; 
     border-color: #b9bbbe;
+    background-color: #EFEFF2   ;
+    -webkit-box-shadow: 10px 10px 22px 1px rgba(0,0,0,0.27);
+    -moz-box-shadow: 10px 10px 22px 1px rgba(0,0,0,0.27);
+    box-shadow: 10px 10px 22px 1px rgba(0,0,0,0.27);
+    border-radius: 0px 0px 25px 25px;
     /*background-color: black;*/
+    background-image: url("../image/bordeRojoMandoAbajo2.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
 }
 
 .letramando{
@@ -129,10 +170,34 @@
 .boton1Mando{
     width: 100px;
     margin: 10px;
+    background: rgba(107,107,107,1);
+    background: -moz-linear-gradient(left, rgba(107,107,107,1) 0%, rgba(145,145,145,1) 73%, rgba(145,145,145,1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(107,107,107,1)), color-stop(73%, rgba(145,145,145,1)), color-stop(100%, rgba(145,145,145,1)));
+    background: -webkit-linear-gradient(left, rgba(107,107,107,1) 0%, rgba(145,145,145,1) 73%, rgba(145,145,145,1) 100%);
+    background: -o-linear-gradient(left, rgba(107,107,107,1) 0%, rgba(145,145,145,1) 73%, rgba(145,145,145,1) 100%);
+    background: -ms-linear-gradient(left, rgba(107,107,107,1) 0%, rgba(145,145,145,1) 73%, rgba(145,145,145,1) 100%);
+    background: linear-gradient(to right, rgba(107,107,107,1) 0%, rgba(145,145,145,1) 73%, rgba(145,145,145,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6b6b6b', endColorstr='#919191', GradientType=1 );
 }
 
 .boton2Mando{
     width: 200px;
+    /*margin-left: 90px;*/
+    padding: 10px 30px 10px 30px;
+    border-radius: 25px;
+    background: rgba(183,28,43,1);
+    background: -moz-linear-gradient(left, rgba(183,28,43,1) 17%, rgba(211,46,60,1) 49%, rgba(255,74,86,1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(17%, rgba(183,28,43,1)), color-stop(49%, rgba(211,46,60,1)), color-stop(100%, rgba(255,74,86,1)));
+    background: -webkit-linear-gradient(left, rgba(183,28,43,1) 17%, rgba(211,46,60,1) 49%, rgba(255,74,86,1) 100%);
+    background: -o-linear-gradient(left, rgba(183,28,43,1) 17%, rgba(211,46,60,1) 49%, rgba(255,74,86,1) 100%);
+    background: -ms-linear-gradient(left, rgba(183,28,43,1) 17%, rgba(211,46,60,1) 49%, rgba(255,74,86,1) 100%);
+    background: linear-gradient(to right, rgba(183,28,43,1) 17%, rgba(211,46,60,1) 49%, rgba(255,74,86,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b71c2b', endColorstr='#ff4a56', GradientType=1 );
+    -webkit-box-shadow: 10px 10px 22px 1px rgba(0,0,0,0.27);
+    -moz-box-shadow: 10px 10px 22px 1px rgba(0,0,0,0.27);
+    box-shadow: 10px 10px 22px 1px rgba(0,0,0,0.27);
+    color: white;
+    /*margin: 0px;*/
     /*margin: 30px;*/
 }
 .logo2empMando{

@@ -40,10 +40,17 @@
                     <button type="button" ng-click="ClickNo()" class="btn btn-dark boton1Mando">NO</button>
                 </div>
             </div>
+            <div class="botones3">
+                <button type="button" ng-click="ClickSi()" class="btn btn-dark BOTONES3Diseño">OBSERVACION</button>
+                <button type="button" ng-click="ClickNo()" class="btn btn-dark BOTONES3Diseño">REPETIR LLAMADO</button>
+                <button type="button" ng-click="ClickNo()" class="btn btn-dark BOTONES3Diseño">EDITAR ENCUESTA</button>
+            </div>
         </div>
+
         <div class="Abajo2Mando">
             <div class="botonP2">
                 <button type="button" class="btn btn-dark boton2Mando" ng-show="ShowDisponible" ng-click="Disponible()">DISPONIBLE</button>
+                <button type="button" class="btn btn-dark boton2Mando" ng-show="ShowTerminarTurno" ng-click="TerminarTurno()">TERMINAR TURNO</button>
             </div>
             <div  class="logo2empMando">
                 <img src="image/Logo Magiturno Website.png" alt="" class="logomagiturno"/>

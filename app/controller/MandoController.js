@@ -2,14 +2,15 @@ angular.module('Personeria').controller('MandoController', InitController);
 InitController.$inject = ['$scope', '$state', '$sessionStorage', 'servicios', '$interval'];
 function InitController($scope, $state, $sessionStorage, servicios, $interval) {
 
-    $scope.ShowConfirmarTurno = false;
+    $scope.ShowConfirmarTurno = true;
     var datos = {};
     var TurnoActual = {};
     var IdUsuario = $sessionStorage.idusuario;
     var limite = 0;
+$scope.ShowTerminarTurno = true;
     var IdPersonaAtendida = 0;
     $scope.ShowDisponible = true;
-    $scope.ShowConfirmarTurno = false;
+//    $scope.ShowConfirmarTurno = false;
 //    $interval(function () {
 //        console.log("1");
 //    }, 2000); 

@@ -1,16 +1,37 @@
-<div class="panelPrincipal">
+<form ng-submit="submitLogin()">
+    <div class="row" id="login">
+        <div class=" container-fluid col-md-6" id="imagen">
+        </div>
+        <div class="container-fluid col-md-6" id="input">
+            <select id="usuario" class="form-control" ng-change="UsuarioSeleccionado()" ng-model="usuario.usuario" placeholder="Contrasena">
+                <option value="">Seleccione el Usuario</option>
+                <option ng-repeat="usu in usuarios" ng-value="{{usu.IdUsuario}}">{{usu.NombreUsuario}}</option>
+            </select>
+            <input type="password" id="contrasena" placeholder="Contrasena" ng-model="usuario.contrasena">
+            <!--<input type="text" id="modulo" placeholder="Modulo">-->
+            <select class="form-control" id="modulo" ng-change="ModuloSeleccionado()" ng-disabled="mostrarModulo" ng-model="usuario.modulo" >
+                <option value="">Seleccione el modulo</option>
+                <option ng-repeat="mod in modulos" ng-value="{{mod.IdModulo}}">{{mod.IdModulo}}</option>
+            </select>
+            <!--<a id="entrar">Entrar</a>-->
+            <button id="entrar" type="submit">Entrar</button>
+        </div>
+    </div>
+</form>
+<!--<div class="panelPrincipal">
+    
     <form class="form-signin" ng-submit="submitLogin()">
         <div >
             <h1 class="h3 mb-3 font-weight-normal">LOGIN</h1>
         </div>
-            
+
         <div class="panelUsuario">
             Seleccione el Usuario
             <select class="form-control" ng-change="UsuarioSeleccionado()" ng-model="usuario.usuario" >
                 <option ng-repeat="usu in usuarios" ng-value="{{usu.IdUsuario}}">{{usu.NombreUsuario}}</option>
             </select>
         </div>
-        <input type="password" ng-model="usuario.contrasena" class="form-control" placeholder="Digite la contraseÃ±a" required>
+        <input type="password" ng-model="usuario.contrasena" class="form-control" placeholder="Digite la contraseña" required>
         <div class="panelUsuario" ng-show="mostrarModulo">
             <select class="form-control" ng-change="ModuloSeleccionado()" ng-model="usuario.modulo" >
                 <option ng-repeat="mod in modulos" ng-value="{{mod.IdModulo}}">{{mod.IdModulo}}</option>
@@ -21,7 +42,14 @@
         <p class="mt-5 mb-3 text-muted">Portal</p>
         <div ng-show="loginError" class="alert alert-danger">Datos de usuario invalidos</div>
     </form>
-</div>
+</div>-->
+
+
+
+
+
+
+
 <!--
 <form class="form-signin" ng-submit="submitLogin()">
     <h1 class="h3 mb-3 font-weight-normal">LOGIN</h1>
@@ -31,7 +59,7 @@
     </select>
     </div>
     
-    <input type="password" ng-model="usuario.contrasena" class="form-control" placeholder="Digite la contraseÃ±a" required>
+    <input type="password" ng-model="usuario.contrasena" class="form-control" placeholder="Digite la contraseña" required>
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
     <p class="mt-5 mb-3 text-muted">Portal</p>

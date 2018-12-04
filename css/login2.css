@@ -1,0 +1,93 @@
+
+
+#login{
+    margin-right: 250px;
+    margin-left: 250px;
+    border-radius: 25px;
+    -webkit-box-shadow: 10px 10px 22px 1px rgba(0,0,0,0.27);
+    -moz-box-shadow: 10px 10px 22px 1px rgba(0,0,0,0.27);
+    box-shadow: 10px 10px 22px 1px rgba(0,0,0,0.27);
+
+}
+#usuario{
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    border-radius: 25px;
+    border-style: solid;
+    border-width:  thin;
+    border-color: #bcbcbc;
+    padding-top:7px;
+    padding-bottom: 7px;
+    padding-left: 30px;
+    -webkit-box-shadow: 10px 10px 22px 1px rgba(0,0,0,0.27);
+    -moz-box-shadow: 10px 10px 22px 1px rgba(0,0,0,0.27);
+    box-shadow: 10px 10px 22px 1px rgba(0,0,0,0.27);
+
+}
+#contrasena{
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    border-radius: 25px;
+    border-style: solid;
+    border-width:  thin;
+    border-color: #bcbcbc;
+    padding-top:7px;
+    padding-bottom: 7px;
+    padding-left: 30px;
+    -webkit-box-shadow: 10px 10px 22px 1px rgba(0,0,0,0.27);
+    -moz-box-shadow: 10px 10px 22px 1px rgba(0,0,0,0.27);
+    box-shadow: 10px 10px 22px 1px rgba(0,0,0,0.27);
+}
+#modulo{
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 80px;
+    border-radius: 25px;
+    border-style: solid;
+    border-width:  thin;
+    border-color: #bcbcbc;
+    padding-top:7px;
+    padding-bottom: 7px;
+    padding-left: 30px;
+    -webkit-box-shadow: 10px 10px 22px 1px rgba(0,0,0,0.27);
+    -moz-box-shadow: 10px 10px 22px 1px rgba(0,0,0,0.27);
+    box-shadow: 10px 10px 22px 1px rgba(0,0,0,0.27);
+}
+#input{
+    margin-top: 128px;
+    margin-bottom: 125px;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgba(188,188,188,0.5);
+    opacity: 1; /* Firefox */
+}
+#entrar{	
+    margin-left: 90px;
+    padding: 10px 30px 10px 30px;
+    border-radius: 25px;
+    background: rgba(183,28,43,1);
+    background: -moz-linear-gradient(left, rgba(183,28,43,1) 17%, rgba(211,46,60,1) 49%, rgba(255,74,86,1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(17%, rgba(183,28,43,1)), color-stop(49%, rgba(211,46,60,1)), color-stop(100%, rgba(255,74,86,1)));
+    background: -webkit-linear-gradient(left, rgba(183,28,43,1) 17%, rgba(211,46,60,1) 49%, rgba(255,74,86,1) 100%);
+    background: -o-linear-gradient(left, rgba(183,28,43,1) 17%, rgba(211,46,60,1) 49%, rgba(255,74,86,1) 100%);
+    background: -ms-linear-gradient(left, rgba(183,28,43,1) 17%, rgba(211,46,60,1) 49%, rgba(255,74,86,1) 100%);
+    background: linear-gradient(to right, rgba(183,28,43,1) 17%, rgba(211,46,60,1) 49%, rgba(255,74,86,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b71c2b', endColorstr='#ff4a56', GradientType=1 );
+    -webkit-box-shadow: 10px 10px 22px 1px rgba(0,0,0,0.27);
+    -moz-box-shadow: 10px 10px 22px 1px rgba(0,0,0,0.27);
+    box-shadow: 10px 10px 22px 1px rgba(0,0,0,0.27);
+    color: white;
+}
+
+#imagen{
+    background-image: url("../image/magiturnoLogin.png");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
