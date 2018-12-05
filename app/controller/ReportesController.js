@@ -9,6 +9,14 @@ function InitController($scope, $state, $sessionStorage, servicios) {
     $scope.NombreUsuario = $sessionStorage.nombreUsuario + " " + $sessionStorage.apellidoUsuario;
     var datos = {};
 
+    datos = {accion: 'DatosEmpresa'};
+    servicios.ModuloReportes(datos).then(function success(response) {
+        console.log(response.data);
+        $scope.NombreEmpresa = response.data.respuesta[0].NombreEmpresa;
+        $scope.NIT = response.data.respuesta[0].nit;
+//        $scope.servicio = response.data.respuesta;
+    });
+
     $scope.DescargarPDF = function (ContenidoID, nombre) {
         console.log("perro");
         var pdf = new jsPDF('p', 'pt', 'letter');
@@ -26,9 +34,11 @@ function InitController($scope, $state, $sessionStorage, servicios) {
     }
 
     $scope.DescargarEXCEL = function () {
-        servicios.reportes().then(function success(response) {
-            console.log(response.data);
-            $scope.servicio = response.data.respuesta;
-        });
+        location.href = "http://localhost/PersoneriaBuga/app/model/reportes.php";
+
     }
+
+    $(function () {
+        $("#datepicker").datepicker();
+    });
 }

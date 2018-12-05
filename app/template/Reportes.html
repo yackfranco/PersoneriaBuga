@@ -27,7 +27,7 @@
                     <img src="image/modulo.png" alt="" style="width: 25px; height: 25px"/>
                 </div>
                 <div class="subitem">
-                  Modulo
+                    Modulo
                 </div>
             </div>
             <div class="items" ng-click="ClicItem('Servicios')">
@@ -35,7 +35,7 @@
                     <img src="image/servicio.png" alt="" style="width: 25px; height: 25px"/>
                 </div>
                 <div class="subitem">
-                   Servicios
+                    Servicios
                 </div>
             </div>
             <div class="items" ng-click="ClicItem('ConfigTipoPoblacion')">
@@ -44,7 +44,7 @@
                     <img src="image/confTipoPoblacion.png" alt="" style="width: 30px; height: 30px"/>
                 </div>
                 <div class="subitem">
-                Config Tipo Población
+                    Config Tipo Población
                 </div>
             </div>
             <div class="items" ng-click="ClicItem('AsigServicios')">
@@ -52,7 +52,7 @@
                     <img src="image/relacionUsuarioServicio.png" alt="" style="width: 30px; height: 30px"/>
                 </div>
                 <div class="subitem">
-                   Asignación de Servicios
+                    Asignación de Servicios
                 </div>
             </div>
             <div class="items" ng-click="ClicItem('Usuarios')">
@@ -79,7 +79,7 @@
                     Reportes
                 </div>
             </div>
-             <div class="items" ng-click="ClicItem('ConfigTv')">
+            <div class="items" ng-click="ClicItem('ConfigTv')">
                 <div class="icono">
                     <img src="image/confiVisualizador.png" alt="" style="width: 25px; height: 25px"/>
                 </div>
@@ -90,16 +90,22 @@
             www.ingetronik.com
 
         </div>
-        
-<div class="paneldere">
+
+        <div class="paneldere">
             <div class="subtituloDerecha">
                 <h5>Reportes</h5>
             </div>
-            <div id="reporte" ng-model="reporte3">
-                jajajajajaja
-                <p>perro
-                    <input type="submit" ng-click="DescargarPDF('reporte', 'reporte2')" value="ejemplo PDF" name="boton" />
-                    <input type="submit" ng-click="DescargarEXCEL()" value="ejemplo EXCEL" name="boton" />
+            <div id="reporte" class="panelGrandeReportes" ng-model="reporte3">
+                <div class="DatosEmpresa">
+                    <div>{{NombreEmpresa}}</div>
+                    <div>{{NIT}}</div>
+                </div>
+                <!--                jajajajajaja
+                                <p>perro
+                                <p>Date: <input type="text" id="datepicker"></p>
+                
+                                <input type="submit" ng-click="DescargarPDF('reporte', 'reporte2')" value="ejemplo PDF" name="boton" />
+                                <input type="submit" ng-click="DescargarEXCEL()" value="ejemplo EXCEL" name="boton" />-->
             </div>
         </div>
     </div>

@@ -30,20 +30,23 @@ function servicios($http, urlBase, $httpParamSerializerJQLike) {
     this.Usuarios = (data) => {
         return $http.post(urlBase + 'Usuarios.php', $httpParamSerializerJQLike(data));
     };
-   this.ConfigTv = (data) => {
+    this.ConfigTv = (data) => {
         return $http.post(urlBase + 'ConfigTv.php', $httpParamSerializerJQLike(data));
     };
-      this.Ejemplo = (data) => {
+    this.Ejemplo = (data) => {
         return $http.post(urlBase + 'Ejemplo.php', $httpParamSerializerJQLike(data));
     };
-      this.Encuesta = (data) => {
+    this.Encuesta = (data) => {
         return $http.post(urlBase + 'Encuesta.php', $httpParamSerializerJQLike(data));
-    };    
+    };
     this.Mando = (data) => {
         return $http.post(urlBase + 'Mando.php', $httpParamSerializerJQLike(data));
     };
     this.reportes = (data) => {
         return $http.post(urlBase + 'reportes.php', $httpParamSerializerJQLike(data));
+    };
+    this.ModuloReportes = (data) => {
+        return $http.post(urlBase + 'ModuloReportes.php', $httpParamSerializerJQLike(data));
     };
     /*this.logout = ($sessionStorage, $scope) => {
      delete $sessionStorage.data_user;
