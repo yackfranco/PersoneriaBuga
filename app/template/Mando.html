@@ -41,9 +41,9 @@
                 </div>
             </div>
             <div class="botones3">
-                <button type="button" ng-click="ClickSi()" class="btn btn-dark BOTONES3Diseño">OBSERVACION</button>
-                <button type="button" ng-click="ClickNo()" class="btn btn-dark BOTONES3Diseño">REPETIR LLAMADO</button>
-                <button type="button" ng-click="ClickNo()" class="btn btn-dark BOTONES3Diseño">EDITAR ENCUESTA</button>
+                <button type="button" ng-show="ShowObservaciones" class="btn btn-dark BOTONES3Diseño" data-toggle="modal" data-target="#ObservacionModal">OBSERVACION</button>
+                <button type="button" ng-show="ShowRepetirLlamado" ng-click="RepetirLlamado()" class="btn btn-dark BOTONES3Diseño">REPETIR LLAMADO</button>
+                <button type="button" ng-show="ShowEditarEncuesta" ng-click="EditarEncuesta()" class="btn btn-dark BOTONES3Diseño" data-toggle="modal" data-target="#EncuestaEditarModal">EDITAR ENCUESTA</button>
             </div>
         </div>
 
@@ -178,6 +178,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">EDITAR PERSONA</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <div>
@@ -301,7 +304,9 @@
                         <div class="form-group row">
                             <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Fecha Nacimiento</label>
                             <div class="col-sm-8">
-                                <input type="text" ng-model="usuInsertar.Fecha" class="form-control" required>
+                                <!--<input type="text" id="datepicker" ng-change="CapturarFecha()" class="form-control" required>-->
+                                <input class="inputFecha" type="date" ng-change="CapturarFecha()" name="dateofbirth" ng-model="FechaNacimiento" required >
+                                <!--<input type="text" ng-model="usuInsertar.Fecha" class="form-control" required>-->
                             </div>
                         </div>
 
@@ -313,3 +318,83 @@
     </div>
 </div>
 
+<!--MODAL PARA OBSERVACION PERSONA-->
+<div data-backdrop="static" data-keyboard="false" class="modal fade bd-example-modal-lg" id="ObservacionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">OBSERVACIÓN</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <form ng-submit="GuardarObservacion()">
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <textarea type="text" ng-model="ObservacionAsesor" class="form-control" rows="3"> </textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-outline-success">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--MODAL PARA EDITAR ENCUESTA PERSONA-->
+<div data-backdrop="static" data-keyboard="false" class="modal fade bd-example-modal-lg" id="EncuestaEditarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">EDITAR ENCUESTA</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <h5 class="modal-title">{{NOMBREPERSONA}}</h5>
+
+            <div class="modal-body">
+                <div>
+                    <form ng-submit="FormEditarEncuesta()">
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label labelListaServicio">Tipo de Población</label>
+                            <div class="col-sm-8">
+                                <!--<input type="text" ng-model="usuEncuestar.TipoPoblacion" class="form-control" required>-->
+                                <select class="form-control" ng-model="usuEncuestar.TipoPoblacion" >
+                                    <option ng-repeat="usu in Poblacion" value="{{usu.TipoPoblacion}}">{{usu.TipoPoblacion}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Nivel de Escolaridad</label>
+
+
+                            <div class="col-sm-8">
+                                <select class="form-control" ng-model="usuEncuestar.Escolaridad" required>
+                                    <option value="PRIMARIA">PRIMARIA</option>
+                                    <option value="SECUNDARIA">SECUNDARIA</option>
+                                    <option value="TECNICO">TÉCNICO</option>
+                                    <option value="TECNOLOGO">TECNÓLOGO</option>
+                                    <option value="UNIVERSITARIO">UNIVERSITARIO</option>
+                                    <option value="SUPERIOR">SUPERIOR</option>
+                                </select>
+                                <!--<input type="text" ng-model="usuEncuestar.Escolaridad" class="form-control"  required>-->
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Asunto</label>
+                            <div class="col-sm-8">
+                                <input type="text" ng-model="usuEncuestar.Asunto" class="form-control" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-outline-success">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,13 +2,20 @@ angular.module('Personeria').controller('MandoController', InitController);
 InitController.$inject = ['$scope', '$state', '$sessionStorage', 'servicios', '$interval'];
 function InitController($scope, $state, $sessionStorage, servicios, $interval) {
 
-    $scope.ShowConfirmarTurno = true;
+   
     var datos = {};
     var TurnoActual = {};
     var IdUsuario = $sessionStorage.idusuario;
     var limite = 0;
-$scope.ShowTerminarTurno = true;
+
     var IdPersonaAtendida = 0;
+    var idEncuestaGlobal = 0;
+
+    $scope.ShowTerminarTurno = false;
+    $scope.ShowObservaciones = false;
+    $scope.ShowRepetirLlamado = false;
+    $scope.ShowEditarEncuesta = false;
+    $scope.ShowConfirmarTurno = false;
     $scope.ShowDisponible = true;
 //    $scope.ShowConfirmarTurno = false;
 //    $interval(function () {
@@ -31,13 +38,18 @@ $scope.ShowTerminarTurno = true;
                 $scope.modulo = response.data.modulos;
                 $scope.ShowDisponible = false;
                 $scope.ShowConfirmarTurno = true;
+                $scope.ShowRepetirLlamado = true;
             }
         });
     }
 
     $scope.ClickSi = function () {
-        $scope.ShowDisponible = true;
+        $scope.ShowDisponible = false;
         $scope.ShowConfirmarTurno = false;
+        $scope.ShowRepetirLlamado = false;
+        $scope.ShowObservaciones = true;
+        $scope.ShowEditarEncuesta = true;
+        $scope.ShowTerminarTurno = true;
         $scope.Cedula = "";
 //        console.log(TurnoActual);
     }
@@ -72,6 +84,10 @@ $scope.ShowTerminarTurno = true;
         }
         $scope.ShowDisponible = true;
         $scope.ShowConfirmarTurno = false;
+        $scope.ShowRepetirLlamado = false;
+        $scope.ShowObservaciones = false;
+        $scope.ShowEditarEncuesta = false;
+        $scope.ShowTerminarTurno = false;
     }
 
     $scope.llenartablamando = function () {
@@ -85,9 +101,15 @@ $scope.ShowTerminarTurno = true;
             }
         });
     }
+    var fecha;
+    $scope.CapturarFecha = function () {
+        fecha = $scope.FechaNacimiento;
+        console.log(fecha);
+    }
 
 
     $scope.guardarPersona = function () {
+$scope.usuInsertar.Fecha = fecha;
         $scope.usuInsertar.accion = "guardarPersona";
 //        console.log($scope.serv);
         servicios.Mando($scope.usuInsertar).then(function success(response) {
@@ -124,6 +146,7 @@ $scope.ShowTerminarTurno = true;
                 $scope.MostrarAlerta = true;
                 $('#EncuestaModal').modal('hide');
                 $('#exampleModal').modal('hide');
+                idEncuestaGlobal = response.data.idEncuesta;
             } else {
                 $scope.alerta = response.data.respuesta;
                 $scope.tipoAlerta = "alert-danger";
@@ -198,4 +221,64 @@ $scope.ShowTerminarTurno = true;
         });
     }
 
+
+    $scope.RepetirLlamado = function () {
+
+        datos = {accion: "RepetirLlamado", Modulo: $sessionStorage.modulo, Turno: $scope.turno, tv: TurnoActual.respuesta[0].LlamadoTv};
+        servicios.Mando(datos).then(function success(response) {
+            if (response.data.respuesta == "Llamado") {
+                console.log("Llamado");
+            }
+        });
+    }
+
+    $scope.GuardarObservacion = function () {
+        $scope.ObservacionAsesor;
+        datos = {accion: "GuardarObservacionAsesor", ObservacionAsesor: $scope.ObservacionAsesor, IdAuditoria: TurnoActual.respuesta[0].IdAuditoria};
+        servicios.Mando(datos).then(function success(response) {
+            $('#ObservacionModal').modal('hide');
+        });
+    }
+
+    $scope.TerminarTurno = function () {
+        datos = {accion: "TerminarTurno", idpersona: IdPersonaAtendida, IdAuditoria: TurnoActual.respuesta[0].IdAuditoria, idEncuesta: idEncuestaGlobal, IdTemporal: TurnoActual.respuesta[0].IdTablaTemporal};
+        console.log(datos);
+        servicios.Mando(datos).then(function success(response) {
+            console.log("Turno Terminado");
+
+        });
+        $scope.ShowDisponible = true;
+        $scope.ShowConfirmarTurno = false;
+        $scope.ShowRepetirLlamado = false;
+        $scope.ShowObservaciones = false;
+        $scope.ShowEditarEncuesta = false;
+        $scope.ShowTerminarTurno = false;
+    }
+
+    $scope.EditarEncuesta = function () {
+        $scope.usuEncuestar = {};
+        datos = {accion: "TraerDatosEncuesta", IdEncuesta: idEncuestaGlobal};
+        servicios.Mando(datos).then(function success(response) {
+            console.log(response);
+            $scope.usuEncuestar = {
+                Asunto: response.data.respuesta[0].Asunto,
+                Escolaridad: response.data.respuesta[0].NivelEscolaridad,
+                TipoPoblacion: response.data.respuesta[0].TipoPoblacion
+            };
+            console.log($scope.usuEncuestar);
+        });
+    }
+
+    $scope.FormEditarEncuesta = function () {
+
+        $scope.usuEditarPer.accion = "editarPersona";
+
+        console.log($scope.usuEditarPer);
+        servicios.Mando($scope.usuEditarPer).then(function success(response) {
+            if (response.data.respuesta == "Editado Correctamente") {
+                console.log("EDITADO");
+                $('#EditarModal').modal('hide');
+            }
+        });
+    }
 }

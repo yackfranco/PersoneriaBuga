@@ -69,6 +69,13 @@ if ($accion == "Llamar") {
         $ultimoLlamado = $Llamado[0]['UltimoLlamado'];
         $ultimoLlamado = $ultimoLlamado + 1;
         $resp = hacerConsulta("update tablatemporal set Estado='Llamando',UltimoLlamado = $ultimoLlamado , FechaLlamado = '$fecha' where IdTablaTemporal=$IdTemp");
+//        echo "perrito";
+//        print_r($Llamado);
+
+        $idauditoria = $Llamado[0]['IdAuditoria'];
+//        echo $idauditoria;
+//        exit();
+        $up = hacerConsulta("update auditoria set IdUsuario= $IdUsuario, FechaLlamado = '$fecha' where IdAuditoria=$idauditoria");
     }
     $validar = array('respuesta' => $Llamado, 'tipo' => $tipo);
 }
@@ -123,6 +130,8 @@ if ($accion == "guardarPersona") {
     $Telefono = $_REQUEST["Telefono"];
     $Fecha = $_REQUEST["Fecha"];
 
+    $newDate = date("Y-m-d", strtotime($Fecha));
+
 //Pregunta si el numero a insertar es de tipo int
     if (is_numeric($Cedula) && is_numeric($Telefono)) {
         $sd = DevolverUnDato("select count(*) from personas where Cedula = '$Cedula'");
@@ -131,7 +140,7 @@ if ($accion == "guardarPersona") {
         } else {
             try {
                 hacerConsulta("insert into personas (NombreCompleto, Cedula,Sexo, Direccion, Barrio, Telefono, FechaNacimiento) "
-                        . "values ('$NombreCompleto','$Cedula','$Sexo','$Direccion','$Barrio',$Telefono,'$Fecha')");
+                        . "values ('$NombreCompleto','$Cedula','$Sexo','$Direccion','$Barrio',$Telefono,'$newDate')");
                 $validar = array('respuesta' => "Registro Guardado Correctamente");
             } catch (Exception $ex) {
                 
@@ -155,7 +164,8 @@ if ($accion == "guardarEncuesta") {
                 . "values ('$IdServicio','$idusuario','$IdPersona','$Asunto','$TipoPoblacion','$Escolaridad')";
 
         hacerConsulta($consulta);
-        $validar = array('respuesta' => "Registro Guardado Correctamente");
+        $idUltimoEncuesta = DevolverUnDato("select max(IdEncuesta) from Encuesta");
+        $validar = array('respuesta' => "Registro Guardado Correctamente", 'idEncuesta' => $idUltimoEncuesta);
     } catch (Exception $ex) {
         $validar = array('respuesta' => "Error al guardar encuesta");
     }
@@ -178,7 +188,14 @@ if ($accion == "TraerDatosEditar") {
     $arreglo = DevolverUnArreglo("select * from personas where IdPersona = $idpersona");
     $validar = array('respuesta' => $arreglo);
 }
- 
+
+if ($accion == "GuardarObservacionAsesor") {
+    $Observacion = $_REQUEST["ObservacionAsesor"];
+    $IdAuditoria = $_REQUEST["IdAuditoria"];
+    $up = hacerConsulta("update auditoria set Observacion= '$Observacion' where IdAuditoria=$IdAuditoria");
+    $validar = array('respuesta' => "guardado");
+}
+
 if ($accion == "editarPersona") {
     $idpersona = $_REQUEST["idPersona"];
     $NombreCompleto = $_REQUEST["NombreCompleto"];
@@ -196,6 +213,57 @@ if ($accion == "editarPersona") {
     } catch (Exception $ex) {
         $validar = array('respuesta' => 'Error al traer datos de Editar');
     }
+}
+
+if ($accion == "RepetirLlamado") {
+
+    $turno = $_REQUEST["Turno"];
+    $modulo = $_REQUEST["Modulo"];
+    $Tipollamado = $_REQUEST["tv"];
+
+    if ($Tipollamado == "1" || $Tipollamado == "2") {
+        try {
+            $consulta = "insert into tv (Modulo,Turno,Descripcion,Estado) "
+                    . "values ('$modulo','$turno','Modulo',$Tipollamado)";
+            hacerConsulta($consulta);
+            $validar = array('respuesta' => "Registro Guardado Correctamente");
+        } catch (Exception $ex) {
+            $validar = array('respuesta' => "Error al guardar encuesta");
+        }
+    } elseif ($Tipollamado == "3") {
+        $consulta = "insert into tv (Modulo,Turno,Descripcion,Estado) "
+                . "values ('$modulo','$turno','Modulo',1)";
+
+        hacerConsulta($consulta);
+        $consulta = "insert into tv (Modulo,Turno,Descripcion,Estado) "
+                . "values ('$modulo','$turno','Modulo',2)";
+
+        hacerConsulta($consulta);
+        $validar = array('respuesta' => "Registro Guardado Correctamente");
+    }
+}
+
+if ($accion == "TerminarTurno") {
+    $idpersona = $_REQUEST["idpersona"];
+    $IdAuditoria = $_REQUEST["IdAuditoria"];
+    $IdEncuesta = $_REQUEST["idEncuesta"];
+    $IdTemporal = $_REQUEST["IdTemporal"];
+    $fecha = (new \DateTime())->format('Y-m-d H:i:s');
+    
+    try {
+        $consulta = hacerConsulta("update auditoria set IdPersona = $idpersona, IdEncuesta = $IdEncuesta, Estado = 'TERMINADO', Fechasalio = '$fecha' where IdAuditoria=$IdAuditoria");
+        hacerConsulta($consulta);
+        hacerConsulta("delete from tablatemporal where IdTablaTemporal = $IdTemporal");
+        $validar = array('respuesta' => "Termiando Correctamente");
+    } catch (Exception $ex) {
+        $validar = array('respuesta' => 'Error en la consulta');
+    }
+}
+
+if ($accion == "TraerDatosEncuesta") {
+    $idencuesta = $_REQUEST["IdEncuesta"];
+    $arreglo = DevolverUnArreglo("select * from encuesta where IdEncuesta = $idencuesta");
+    $validar = array('respuesta' => $arreglo);
 }
 //select * from tablatemporal join servicio on (tablatemporal.IdServicio = servicio.IdServicio) where Estado = 'Aplazado' and FechaLlamado < (SELECT NOW() - INTERVAL 2 MINUTE) and tablatemporal.IdServicio in (select IdServicio from relacionususer join usuario on (relacionususer.IdUsuario = usuario.IdUsuario) where relacionususer.IdUsuario = 4) order by tablatemporal.UltimoLlamado ASC, tablatemporal.IdTablaTemporal ASC
 //select tablatemporal.* from tablatemporal join servicio on (tablatemporal.IdServicio = servicio.IdServicio) where Estado = 'NORMAL' and tablatemporal.Prioridad = 1 and tablatemporal.IdServicio in (select IdServicio from relacionususer join usuario on (relacionususer.IdUsuario = usuario.IdUsuario) where relacionususer.IdUsuario = 4) order by IdTablaTemporal ASC LIMIT 1

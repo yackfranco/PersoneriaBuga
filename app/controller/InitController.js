@@ -21,6 +21,8 @@ function InitController($scope, $state, $sessionStorage, servicios) {
     });
 
     $scope.submitLogin = function () {
+        
+       $sessionStorage.modulo = $scope.usuario.modulo;
 //        console.log($scope.usuario);
         $scope.usuario.accion = "entrar";
           console.log($scope.usuario);
