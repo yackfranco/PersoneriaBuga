@@ -38,7 +38,25 @@ function InitController($scope, $state, $sessionStorage, servicios) {
 
     }
 
-    $(function () {
-        $("#datepicker").datepicker();
-    });
+    $scope.SacarReporte = function () {
+        convertDatePickerTimeToMySQLTime($scope.fechaFinal);
+        
+         location.href = "http://localhost/PersoneriaBuga/app/model/reportes.php?fechafinal="+ convertDatePickerTimeToMySQLTime($scope.fechaFinal)+"&fechaInicial="+convertDatePickerTimeToMySQLTime($scope.fechaInicial)+"";
+//        console.log($scope.fechaFinal);
+    }
+
+    function convertDatePickerTimeToMySQLTime(str) {
+        var month, day, year, hours, minutes, seconds;
+        var date = new Date(str),
+                month = ("0" + (date.getMonth() + 1)).slice(-2),
+                day = ("0" + date.getDate()).slice(-2);
+        hours = ("0" + date.getHours()).slice(-2);
+        minutes = ("0" + date.getMinutes()).slice(-2);
+        seconds = ("0" + date.getSeconds()).slice(-2);
+
+        var mySQLDate = [date.getFullYear(), month, day].join("-");
+        var mySQLTime = [hours, minutes, seconds].join(":");
+        return [mySQLDate, mySQLTime].join(" ");
+    }
+
 }

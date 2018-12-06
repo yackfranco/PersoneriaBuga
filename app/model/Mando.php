@@ -167,7 +167,8 @@ if ($accion == "cargarPoblacion") {
 }
 if ($accion == "cargarTablaNumTurnos") {
     $idusuario = $_REQUEST["IdUsuario"];
-    $arreglo = DevolverUnArreglo("SELECT servicio.Servicio, (select count(*) from tablatemporal where IdServicio= servicio.IdServicio AND Estado = 'NORMAL' or Estado = 'Aplazado' AND LlamadoPor='ASESOR') as Cantidad FROM `relacionususer` join servicio on (servicio.IdServicio = relacionususer.IdServicio) WHERE IdUsuario = $idusuario");
+    $arreglo = DevolverUnArreglo("select servicio.Servicio, COUNT(tablatemporal.IdServicio) as Cantidad from tablatemporal JOIN servicio on (tablatemporal.IdServicio = servicio.IdServicio) where tablatemporal.IdServicio in (select IdServicio from relacionususer join usuario on (relacionususer.IdUsuario = usuario.IdUsuario) where relacionususer.IdUsuario = $idusuario) GROUP by tablatemporal.IdServicio");
+//    $arreglo = DevolverUnArreglo("SELECT servicio.Servicio, (select count(*) from tablatemporal where IdServicio= servicio.IdServicio AND Estado = 'NORMAL' or Estado = 'Aplazado' AND LlamadoPor='ASESOR') as Cantidad FROM `relacionususer` join servicio on (servicio.IdServicio = relacionususer.IdServicio) WHERE IdUsuario = $idusuario");
     $validar = array('respuesta' => $arreglo);
 }
 
@@ -198,8 +199,10 @@ if ($accion == "editarPersona") {
 }
 //select * from tablatemporal join servicio on (tablatemporal.IdServicio = servicio.IdServicio) where Estado = 'Aplazado' and FechaLlamado < (SELECT NOW() - INTERVAL 2 MINUTE) and tablatemporal.IdServicio in (select IdServicio from relacionususer join usuario on (relacionususer.IdUsuario = usuario.IdUsuario) where relacionususer.IdUsuario = 4) order by tablatemporal.UltimoLlamado ASC, tablatemporal.IdTablaTemporal ASC
 //select tablatemporal.* from tablatemporal join servicio on (tablatemporal.IdServicio = servicio.IdServicio) where Estado = 'NORMAL' and tablatemporal.Prioridad = 1 and tablatemporal.IdServicio in (select IdServicio from relacionususer join usuario on (relacionususer.IdUsuario = usuario.IdUsuario) where relacionususer.IdUsuario = 4) order by IdTablaTemporal ASC LIMIT 1
+
 //SELECT servicio.Servicio, (select count(*) from tablatemporal where IdServicio= servicio.IdServicio AND Estado = 'NORMAL' AND LlamadoPor='ASESOR') as Cantidad FROM `relacionususer` join servicio on (servicio.IdServicio = relacionususer.IdServicio) WHERE IdUsuario = " 1"
 
+//select servicio.Servicio, COUNT(tablatemporal.IdServicio) as contar from tablatemporal JOIN servicio on (tablatemporal.IdServicio = servicio.IdServicio) where tablatemporal.IdServicio in (select IdServicio from relacionususer join usuario on (relacionususer.IdUsuario = usuario.IdUsuario) where relacionususer.IdUsuario = 4) GROUP by tablatemporal.IdServicio
 header('Content-Type: application/json');
 echo json_encode($validar, JSON_FORCE_OBJECT);
 ?>

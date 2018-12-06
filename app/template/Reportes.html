@@ -100,12 +100,22 @@
                     <div>{{NombreEmpresa}}</div>
                     <div>{{NIT}}</div>
                 </div>
-                <!--                jajajajajaja
-                                <p>perro
-                                <p>Date: <input type="text" id="datepicker"></p>
-                
-                                <input type="submit" ng-click="DescargarPDF('reporte', 'reporte2')" value="ejemplo PDF" name="boton" />
-                                <input type="submit" ng-click="DescargarEXCEL()" value="ejemplo EXCEL" name="boton" />-->
+                <form ng-submit="SacarReporte()">
+                    <div class="fechasFiltroReporte">
+
+                        <div >
+                            FechaInicio:<input class="inputFecha" ng-value="fi" type="date" required ng-model="fechaInicial" name="dateofbirth">
+                        </div>
+                        <div>
+                            FechaFinal:<input class="inputFecha" type="date" required ng-model="fechaFinal" name="dateofbirth">
+                        </div>
+                        <input type="submit" value="Sacar Reporte" name="boton" />
+                        
+
+                    </div>
+                </form>                   
+                <input type="submit" ng-click="DescargarPDF('reporte', 'reporte2')" value="ejemplo PDF" name="boton" />
+                <input type="submit" ng-click="DescargarEXCEL()" value="ejemplo EXCEL" name="boton" />
             </div>
         </div>
     </div>
