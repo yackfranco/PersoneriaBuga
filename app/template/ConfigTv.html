@@ -95,38 +95,45 @@
             <div class="subtituloDerecha">
                 <h5>Configuración del Visualizador</h5>
             </div>
-                 <!--ALERTAS-->
+            <!--ALERTAS-->
             <div class="alert {{tipoAlerta}} alert-dismissible fade show" ng-show="MostrarAlerta" role="alert">
                 <strong>ALERTA!</strong> {{alerta}}
                 <button type="button" class="close" ng-click="cerrarAlerta()">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="panelCentralVisualizador">
-                <div class="derechaVisualizador">
-                    <div class="textTV">
-                        <label for="exampleInputEmail1">Mensaje Rotativo</label>
-                        <input type="text" class="form-control" ng-model="MensajeR" aria-label="Username" aria-describedby="basic-addon1">
+            <form action="app/model/Ejemplo.php" target="request" method="POST" enctype="multipart/form-data">
+                <!--<form ng-submit="add()" enctype="multipart/form-data">-->
+                <div class="panelCentralVisualizador">
+                    <div class="derechaVisualizador">
+                        <div ng-show="false" >
+                            <label for="exampleInputEmail1">Mensaje Rotativo</label>
+                            <input type="text" class="form-control"  name="accion" value="guardarDatos" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="textTV">
+                            <label for="exampleInputEmail1">Mensaje Rotativo</label>
+                            <input type="text" class="form-control"  name="MensajeR" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="textTV">
+                            <label for="exampleInputEmail1">Nombre del Video</label>
+                            <input type="text" class="form-control"  name="Nvideo" aria-label="Username" aria-describedby="basic-addon1">                     
+                        </div>
+                        <div class="textTV">
+                            <label for="exampleInputEmail1">Tamaño de Fuente</label>
+                            <input type="text" class="form-control"  name="Fuente" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
                     </div>
-                    <div class="textTV">
-                        <label for="exampleInputEmail1">Nombre del Video</label>
-                        <input type="text" class="form-control" ng-model="Nvideo" aria-label="Username" aria-describedby="basic-addon1">                     
-                    </div>
-                    <div class="textTV">
-                        <label for="exampleInputEmail1">Tamaño de Fuente</label>
-                        <input type="text" class="form-control" ng-model="Fuente" aria-label="Username" aria-describedby="basic-addon1">
-                    </div>
-                </div>
-                <div class="IzquierdaVisualizador">
-                    <div class="logotvConfigTv">
+                    <div class="IzquierdaVisualizador">
+                        <div class="logotvConfigTv">
 
-                    </div>
-                    <div class="botonesConfigTV">
-                        <button type="button" class="btn btn-primary botonGuardarCOnfigTV">Seleccionar Imagen</button>
-                        <button type="button" ng-click="GuardarConfig()" class="btn btn-primary botonGuardarCOnfigTV">GUARDAR</button>
+                        </div>
+                        <div class="botonesConfigTV">
+                            <input type="file" ng-model="Imagen" id="file" name="Imagen"/>
+                            <button type="submit" class="btn btn-primary botonGuardarCOnfigTV">GUARDAR</button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>

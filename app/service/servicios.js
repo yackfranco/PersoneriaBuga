@@ -48,6 +48,9 @@ function servicios($http, urlBase, $httpParamSerializerJQLike) {
     this.ModuloReportes = (data) => {
         return $http.post(urlBase + 'ModuloReportes.php', $httpParamSerializerJQLike(data));
     };
+    this.Dashboard = (data) => {
+        return $http.post(urlBase + 'Dashboard.php', $httpParamSerializerJQLike(data));
+    };
     /*this.logout = ($sessionStorage, $scope) => {
      delete $sessionStorage.data_user;
      $scope.$parent.show = true;

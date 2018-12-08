@@ -21,21 +21,17 @@ if ($accion == "guardarDatos") {
     $MensajeR = $_REQUEST["MensajeR"];
     $Nvideo = $_REQUEST["Nvideo"];
     $Fuente = $_REQUEST["Fuente"];
-   
+    $Imagen = addslashes(file_get_contents($_FILES['Imagen']['tmp_name']));
+
+
     try {
+
         $cont = DevolverUnDato("select count(*) from configtv");
         if ($cont > 0) {
-            $consulta = "Update configtv set mensaje = '$MensajeR', video = '$Nvideo', TamanoLetra = $Fuente";
-            hacerConsulta($consulta);
-            
-            $consulta = "insert into tv (Modulo,Estado) values ('#12#.3421D',1)";
-            hacerConsulta($consulta);
-            
-            $consulta = "insert into tv (Modulo,Estado) values ('#12#.3421D',2)";
-            hacerConsulta($consulta);
-            
+            hacerConsulta("Update configtv set mensaje = '$MensajeR', video = '$Nvideo', TamanoLetra = '$Fuente', logo = '$Imagen'");
         } else {
-            hacerConsulta("insert into configtv (mensaje,video,TamanoLetra) values ('$MensajeR','$Nvideo',$Fuente)");
+            $consulta = "insert into configtv (mensaje,video,TamanoLetra,logo) values ('$MensajeR','$Nvideo','$Fuente','$Imagen')";
+            hacerConsulta($consulta);
         }
         $resp = "Guardado Correctamente";
     } catch (Exception $ex) {

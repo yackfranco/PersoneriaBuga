@@ -134,7 +134,8 @@
                             <label for="inputEmail3" class="col-sm-4 col-form-label labelListaServicio">Tipo de Población</label>
                             <div class="col-sm-8">
                                 <!--<input type="text" ng-model="usuEncuestar.TipoPoblacion" class="form-control" required>-->
-                                <select class="form-control" ng-model="usuEncuestar.TipoPoblacion" >
+                                <select class="form-control" ng-model="usuEncuestar.TipoPoblacion" required>
+                                     <option value="">--Seleccione--</option>
                                     <option ng-repeat="usu in Poblacion" value="{{usu.TipoPoblacion}}">{{usu.TipoPoblacion}}</option>
                                 </select>
                             </div>
@@ -145,6 +146,7 @@
 
                             <div class="col-sm-8">
                                 <select class="form-control" ng-model="usuEncuestar.Escolaridad" required>
+                                    <option value="">--Seleccione--</option>
                                     <option value="PRIMARIA">PRIMARIA</option>
                                     <option value="SECUNDARIA">SECUNDARIA</option>
                                     <option value="TECNICO">TÉCNICO</option>
@@ -391,7 +393,7 @@
                                 <input type="text" ng-model="usuEncuestar.Asunto" class="form-control" required>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-outline-success">Guardar</button>
+                        <button type="submit" class="btn btn-outline-success">Editar</button>
                     </form>
                 </div>
             </div>

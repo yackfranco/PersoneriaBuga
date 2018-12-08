@@ -9,10 +9,12 @@ function dashboardController($scope, $state, $sessionStorage, $servicios) {
     $scope.NombreUsuario = $sessionStorage.nombreUsuario + " " + $sessionStorage.apellidoUsuario;
 
 
-    $scope.GuardarConfig = function () {
-        datos = {accion: "guardarDatos", MensajeR: $scope.MensajeR, Nvideo: $scope.Nvideo, Fuente: $scope.Fuente};
-        $servicios.ConfigTv(datos).then(function success(response) {
+       $scope.GuardarConfig = function () {
+        console.log($scope.tv);
+        $scope.tv.accion = "guardarDatos";
+        $servicios.Ejemplo($scope.tv).then(function success(response) {
             console.log(response.data);
+
             if (response.data.respuesta == "Guardado Correctamente") {
                 $scope.alerta = response.data.respuesta;
                 $scope.tipoAlerta = "alert-success";
@@ -21,8 +23,24 @@ function dashboardController($scope, $state, $sessionStorage, $servicios) {
             }
         });
     }
-    
-     $scope.cerrarAlerta = function(){
+
+    $scope.add = function () {
+        var f = document.getElementById('file').files[0],
+                r = new FileReader();
+
+        r.onloadend = function (e) {
+            var data = e.target.result;
+            //send your binary data via $http or $resource or do anything else with it
+        }
+
+        r.readAsBinaryString(f);
+        console.log(r.readAsBinaryString(f));
+    }
+
+    $scope.guardarI = function () {
+        console.log($scope.Imagen);
+    }
+    $scope.cerrarAlerta = function () {
         $scope.MostrarAlerta = false;
     }
 }

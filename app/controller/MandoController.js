@@ -2,7 +2,7 @@ angular.module('Personeria').controller('MandoController', InitController);
 InitController.$inject = ['$scope', '$state', '$sessionStorage', 'servicios', '$interval'];
 function InitController($scope, $state, $sessionStorage, servicios, $interval) {
 
-   
+
     var datos = {};
     var TurnoActual = {};
     var IdUsuario = $sessionStorage.idusuario;
@@ -10,6 +10,7 @@ function InitController($scope, $state, $sessionStorage, servicios, $interval) {
 
     var IdPersonaAtendida = 0;
     var idEncuestaGlobal = 0;
+    var idPersonaGlobal = 0;
 
     $scope.ShowTerminarTurno = false;
     $scope.ShowObservaciones = false;
@@ -23,7 +24,7 @@ function InitController($scope, $state, $sessionStorage, servicios, $interval) {
 //    }, 2000); 
 
     $scope.Disponible = function () {
-        datos = {accion: "Llamar", IdUsuario: IdUsuario};
+        datos = {accion: "Llamar", IdUsuario: IdUsuario, Modulo: $sessionStorage.modulo};
         servicios.Mando(datos).then(function success(response) {
             console.log(response.data.respuesta);
             if (response.data.tipo == "NO HAY TURNOS")
@@ -51,6 +52,10 @@ function InitController($scope, $state, $sessionStorage, servicios, $interval) {
         $scope.ShowEditarEncuesta = true;
         $scope.ShowTerminarTurno = true;
         $scope.Cedula = "";
+        datos = {accion: "ClicSi", IdUsuario: IdUsuario};
+        servicios.Mando(datos).then(function success(response) {
+
+        });
 //        console.log(TurnoActual);
     }
 
@@ -68,11 +73,11 @@ function InitController($scope, $state, $sessionStorage, servicios, $interval) {
 
                     console.log("aqui se elimina");
                     //Elimino El turno, porque se exedio en las vaces de llamado
-                    datos = {accion: "EliminarTurno", idAuditoria: TurnoActual.respuesta[0].IdAuditoria, IdTablaTemporal: TurnoActual.respuesta[0].IdTablaTemporal, NumLlamados: response.data.respuesta};
+                    datos = {accion: "EliminarTurno", idAuditoria: TurnoActual.respuesta[0].IdAuditoria, IdTablaTemporal: TurnoActual.respuesta[0].IdTablaTemporal, NumLlamados: response.data.respuesta,IdUsuario: IdUsuario};
                     servicios.Mando(datos).then(function success(response) {});
                 } else {
                     console.log("ENTRO Aplazado 1");
-                    datos = {accion: "aumentarLlamadoAplazado", IdTablaTemporal: TurnoActual.respuesta[0].IdTablaTemporal};
+                    datos = {accion: "aumentarLlamadoAplazado", IdTablaTemporal: TurnoActual.respuesta[0].IdTablaTemporal,IdUsuario: IdUsuario};
                     servicios.Mando(datos).then(function success(response) {});
                 }
             });
@@ -107,18 +112,26 @@ function InitController($scope, $state, $sessionStorage, servicios, $interval) {
         console.log(fecha);
     }
 
-
     $scope.guardarPersona = function () {
-$scope.usuInsertar.Fecha = fecha;
+        $scope.usuInsertar.Fecha = fecha;
         $scope.usuInsertar.accion = "guardarPersona";
-//        console.log($scope.serv);
+        var datos = {};
+        datos = {accion: "cargarPoblacion"};
+        servicios.Mando(datos).then(function success(response) {
+            console.log(response);
+            $scope.Poblacion = response.data;
+        });
         servicios.Mando($scope.usuInsertar).then(function success(response) {
-            console.log(response.data);
+//            console.log(response.data);
             if (response.data.respuesta == "Registro Guardado Correctamente") {
                 $scope.alerta = response.data.respuesta;
                 $scope.tipoAlerta = "alert-success";
                 $scope.MostrarAlerta = true;
-            } else {
+                IdPersonaAtendida = response.data.IdPersona;
+                $scope.usuEncuestar = {};
+//                console.log(idPersonaGlobal);
+                $('#EncuestaModal').modal('show');
+            } else {//
                 $scope.alerta = response.data.respuesta;
                 $scope.tipoAlerta = "alert-danger";
                 $scope.MostrarAlerta = true;
@@ -129,15 +142,11 @@ $scope.usuInsertar.Fecha = fecha;
 
     $scope.guardarEncuesta = function () {
 //
-
         $scope.usuEncuestar.accion = "guardarEncuesta";
         $scope.usuEncuestar.IdUsuario = $sessionStorage.idusuario;
         console.log(TurnoActual);
         $scope.usuEncuestar.IdServicio = TurnoActual.respuesta[0].IdServicio;
         $scope.usuEncuestar.IdPersona = IdPersonaAtendida;
-
-        console.log($scope.usuEncuestar);
-//        console.log("perro");
         servicios.Mando($scope.usuEncuestar).then(function success(response) {
             console.log(response.data);
             if (response.data.respuesta == "Registro Guardado Correctamente") {
@@ -155,18 +164,19 @@ $scope.usuInsertar.Fecha = fecha;
         });
     }
 
-    var datos = {};
-    datos = {accion: "cargarPoblacion"};
-    servicios.Mando(datos).then(function success(response) {
-        console.log(response);
-        $scope.Poblacion = response.data;
-    });
+
 
     $scope.DatosPersona = function (idpersona, nombre) {
         $scope.NOMBREPERSONA = nombre;
         $scope.usuEncuestar = {};
         IdPersonaAtendida = idpersona;
         console.log("IdPersonaAtendida: " + IdPersonaAtendida);
+        var datos = {};
+        datos = {accion: "cargarPoblacion"};
+        servicios.Mando(datos).then(function success(response) {
+            console.log(response);
+            $scope.Poblacion = response.data;
+        });
     }
 
     $scope.cerrarAlerta = function () {
@@ -241,7 +251,7 @@ $scope.usuInsertar.Fecha = fecha;
     }
 
     $scope.TerminarTurno = function () {
-        datos = {accion: "TerminarTurno", idpersona: IdPersonaAtendida, IdAuditoria: TurnoActual.respuesta[0].IdAuditoria, idEncuesta: idEncuestaGlobal, IdTemporal: TurnoActual.respuesta[0].IdTablaTemporal};
+        datos = {accion: "TerminarTurno", idpersona: IdPersonaAtendida, IdAuditoria: TurnoActual.respuesta[0].IdAuditoria, idEncuesta: idEncuestaGlobal, IdTemporal: TurnoActual.respuesta[0].IdTablaTemporal,IdUsuario: IdUsuario};
         console.log(datos);
         servicios.Mando(datos).then(function success(response) {
             console.log("Turno Terminado");
@@ -271,13 +281,13 @@ $scope.usuInsertar.Fecha = fecha;
 
     $scope.FormEditarEncuesta = function () {
 
-        $scope.usuEditarPer.accion = "editarPersona";
-
-        console.log($scope.usuEditarPer);
-        servicios.Mando($scope.usuEditarPer).then(function success(response) {
+        $scope.usuEncuestar.accion = "editarEncuesta";
+        $scope.usuEncuestar.idencuesta = idEncuestaGlobal;
+        console.log($scope.usuEncuestar);
+        servicios.Mando($scope.usuEncuestar).then(function success(response) {
             if (response.data.respuesta == "Editado Correctamente") {
                 console.log("EDITADO");
-                $('#EditarModal').modal('hide');
+                $('#EncuestaEditarModal').modal('hide');
             }
         });
     }

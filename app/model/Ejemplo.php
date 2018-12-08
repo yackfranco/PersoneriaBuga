@@ -25,17 +25,20 @@ if ($accion == "guardarDatos") {
 
 
     try {
-        $consulta = "insert into configtv (mensaje,video,TamanoLetra,logo) values ('$MensajeR','$Nvideo','$Fuente','$Imagen')";
-        hacerConsulta($consulta);
+
+        $cont = DevolverUnDato("select count(*) from configtv");
+        if ($cont > 0) {
+            hacerConsulta("Update configtv set mensaje = '$MensajeR', video = '$Nvideo', TamanoLetra = '$Fuente', logo = '$Imagen'");
+        } else {
+            $consulta = "insert into configtv (mensaje,video,TamanoLetra,logo) values ('$MensajeR','$Nvideo','$Fuente','$Imagen')";
+            hacerConsulta($consulta);
+        }
         $resp = "Guardado Correctamente";
-        
     } catch (Exception $ex) {
         $resp = "Error al Guardar Configuracion de Los Turnos Perdidos";
     }
 
     $validar = array('respuesta' => $resp);
-   
-    
 }
 
 

@@ -1,4 +1,61 @@
 
+.panelderedash{
+     width: 80%;
+    height: 100%;
+     display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    background-color: white;
+}
+.panelizqdash{
+    width: 50%;
+    height: 100%;
+    /*background-color: blue;*/
+}
+.panelizqsdash{
+    width: 50%;
+    height: 100%;
+/*    background-color: white;*/
+}
+.Panelarribadash{
+    width: 100%;
+    height: 50%;
+    /*background-color: black;*/
+      display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.Panelabajodash{
+    width: 100%;
+    height: 50%;
+    /*background-color: #00d6b2;*/
+      display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.Panelarribadash1{
+    width: 100%;
+    height: 50%;
+    /*background-color: #00d6b2;*/
+      display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.Panelabajodash1{
+    width: 100%;
+    height: 50%;
+    /*background-color: black;*/
+      display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
 .ContMenu{
     display: flex;
     flex-direction: row;

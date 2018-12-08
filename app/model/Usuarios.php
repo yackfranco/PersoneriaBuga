@@ -33,9 +33,15 @@ if ($accion == "guardarUsuario") {
             $validar = array('respuesta' => "El usuario ya se encuentra registrado, por favor intente otro");
         } else {
             try {
-                hacerConsulta("insert into usuario (NombreCompleto, Cedula,Correo, NombreUsuario, Rol, Contrasena) "
-                        . "values ('$NombreCompleto','$Cedula','$Correo','$NombreUsuario','$Rol','" . md5($Contrasena) . "')");
-                $validar = array('respuesta' => "Registro Guardado Correctamente");
+                if ($Rol == 'ASESOR') {
+                    hacerConsulta("insert into usuario (NombreCompleto, Cedula,Correo, NombreUsuario, Rol, Contrasena, Estado) "
+                            . "values ('$NombreCompleto','$Cedula','$Correo','$NombreUsuario','$Rol','" . md5($Contrasena) . "', 'DISPONIBLE')");
+                    $validar = array('respuesta' => "Registro Guardado Correctamente");
+                }elseif ($Rol == 'ADMINISTRADOR') {
+                    hacerConsulta("insert into usuario (NombreCompleto, Cedula,Correo, NombreUsuario, Rol, Contrasena) "
+                            . "values ('$NombreCompleto','$Cedula','$Correo','$NombreUsuario','$Rol','" . md5($Contrasena) . "')");
+                    $validar = array('respuesta' => "Registro Guardado Correctamente");
+                }
             } catch (Exception $ex) {
                 
             }
@@ -73,7 +79,7 @@ if ($accion == "editarUsuario") {
     $IdUsuario = $_REQUEST["IdUsuario"];
     $NombreCompleto = $_REQUEST["NombreCompleto"];
     $Cedula = $_REQUEST["Cedula"];
-    $Correo = $_REQUEST["Correo"];                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+    $Correo = $_REQUEST["Correo"];
     $NombreUsuario = $_REQUEST["Usuario"];
     $Rol = $_REQUEST["Rol"];
     $Contrasena = $_REQUEST["Contrasena"];
@@ -81,7 +87,7 @@ if ($accion == "editarUsuario") {
     try {
         $consulta = "update usuario set NombreCompleto='$NombreCompleto', Cedula='$Cedula',Correo='$Correo', NombreUsuario='$NombreUsuario',"
                 . " Rol='$Rol',Contrasena = '" . md5($Contrasena) . "' where IdUsuario = $IdUsuario ";
-        
+
         hacerConsulta($consulta);
         $validar = array('respuesta' => "Editado Correctamente");
     } catch (Exception $ex) {

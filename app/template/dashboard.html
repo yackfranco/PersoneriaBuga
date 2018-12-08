@@ -44,7 +44,7 @@
                     <img src="image/confTipoPoblacion.png" alt="" style="width: 30px; height: 30px"/>
                 </div>
                 <div class="subitem">
-                Config Tipo Población
+                    Config Tipo Población
                 </div>
             </div>
             <div class="items" ng-click="ClicItem('AsigServicios')">
@@ -52,7 +52,7 @@
                     <img src="image/relacionUsuarioServicio.png" alt="" style="width: 30px; height: 30px"/>
                 </div>
                 <div class="subitem">
-                   Asignación de Servicios
+                    Asignación de Servicios
                 </div>
             </div>
             <div class="items" ng-click="ClicItem('Usuarios')">
@@ -79,7 +79,7 @@
                     Reportes
                 </div>
             </div>
-             <div class="items" ng-click="ClicItem('ConfigTv')">
+            <div class="items" ng-click="ClicItem('ConfigTv')">
                 <div class="icono">
                     <img src="image/confiVisualizador.png" alt="" style="width: 25px; height: 25px"/>
                 </div>
@@ -91,9 +91,78 @@
 
         </div>
 
-        <div class="paneldere">
+        <div class="panelderedash">
+            <div class="panelizqdash">
+                <div class="Panelarribadash">
+                    <table class="table table-striped tablaCompleta">
+                        <thead class="tituloTabla">
+                            <tr>
+                                <th scope="col">ASESOR</th>
+                                <th scope="col">DISPONIBILIDAD</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="usu in usuario">
+                                <th scope="row" class="infotablaServiciodash">{{usu.NombreUsuario}}</th>
+                                <th scope="row" class="infotablaServiciodash">{{usu.Estado}}</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="Panelabajodash">
+                    <table class="table table-striped tablaCompleta">
+                        <thead class="tituloTabla">
+                            <tr>
+                                <th scope="col">TIPO POBLACIÓN</th>
+                                <th scope="col">CANTIDAD ATENDIDOS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="pob in poblacion">
+                                <th scope="row" class="infotablaServicioww">{{pob.TipoPoblacion}}</th>
+                                <th scope="row" class="infotablaServicioww">{{pob.Cantidad}}</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="panelizqsdash">
+                <div class="Panelarribadash1">
+                    <table class="table table-striped tablaCompleta">
+                        <thead class="tituloTabla">
+                            <tr>
+                                <th scope="col">SERVICIO</th>
+                                <th scope="col">CANTIDAD ATENDIDOS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="ser in servicio">
+                                <th scope="row" class="infotablaServicioWW">{{ser.Servicio}}</th>
+                                <th scope="row" class="infotablaServicioWW">{{ser.Cantidad}}</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="Panelabajodash1">
+                    <table class="table table-striped tablaCompleta">
+                        <thead class="tituloTabla">
+                            <tr>
+                                <th scope="col">ASESOR</th>
+                                <th scope="col">CANTIDAD ATENDIDOS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="usus in usuarioscant">
+                                <th scope="row" class="infotablaServicioww">{{usus.NombreUsuario}}</th>
+                                <th scope="row" class="infotablaServicioww">{{usus.Cantidad}}</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
         </div>
+
 
     </div>
 
