@@ -1,6 +1,6 @@
 <form ng-submit="submitLogin()">
     <div class="row" id="login">
-        <div class=" container-fluid col-md-6" id="imagen">
+        <div class=" container-fluid col-md-6" id="imagen" ng-click="abrirLicencia()">
         </div>
         <div class="container-fluid col-md-6" id="input">
             <select id="usuario" class="form-control" ng-change="UsuarioSeleccionado()" ng-model="usuario.usuario" placeholder="Contrasena">
@@ -18,59 +18,37 @@
         </div>
     </div>
 </form>
-<!--<div class="panelPrincipal">
-    
-    <form class="form-signin" ng-submit="submitLogin()">
-        <div >
-            <h1 class="h3 mb-3 font-weight-normal">LOGIN</h1>
+
+
+
+<!--MODAL PARA COMPRAR MAS MODULOS-->
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalCambiarFecha" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">CAMBIAR LICENCIA</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form ng-show="mostrarContra">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Contrase√±a de Ingetronik</label>
+                        <input type="password" class="form-control">
+                    </div>
+                    <button ng-click="EntrarLicencia()" class="btn btn-primary">Entrar</button>
+                </form>
+
+                <form ng-show="mostrarFechaLicencia">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Contrase√±a de Ingetronik</label>
+                        <input type="password" class="form-control" ng-model="algo">
+                    </div>
+                    <button ng-click="EntrarLicencia()" class="btn btn-primary">Entrar</button>
+                </form>
+
+            </div>
         </div>
-
-        <div class="panelUsuario">
-            Seleccione el Usuario
-            <select class="form-control" ng-change="UsuarioSeleccionado()" ng-model="usuario.usuario" >
-                <option ng-repeat="usu in usuarios" ng-value="{{usu.IdUsuario}}">{{usu.NombreUsuario}}</option>
-            </select>
-        </div>
-        <input type="password" ng-model="usuario.contrasena" class="form-control" placeholder="Digite la contraseÒa" required>
-        <div class="panelUsuario" ng-show="mostrarModulo">
-            <select class="form-control" ng-change="ModuloSeleccionado()" ng-model="usuario.modulo" >
-                <option ng-repeat="mod in modulos" ng-value="{{mod.IdModulo}}">{{mod.IdModulo}}</option>
-            </select>
-        </div>
-
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
-        <p class="mt-5 mb-3 text-muted">Portal</p>
-        <div ng-show="loginError" class="alert alert-danger">Datos de usuario invalidos</div>
-    </form>
-</div>-->
-
-
-
-
-
-
-
-<!--
-<form class="form-signin" ng-submit="submitLogin()">
-    <h1 class="h3 mb-3 font-weight-normal">LOGIN</h1>
-    <div class="sa">
-        <select class="form-control usuarioSeleccionado" ng-change="UsuarioSeleccionado()" ng-model="usuario.usuario" >
-        <option ng-repeat="usu in usuarios" ng-value="{{usu.IdUsuario}}">{{usu.NombreUsuario}}</option>
-    </select>
     </div>
-    
-    <input type="password" ng-model="usuario.contrasena" class="form-control" placeholder="Digite la contraseÒa" required>
-
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
-    <p class="mt-5 mb-3 text-muted">Portal</p>
-    <div ng-show="loginError" class="alert alert-danger">Datos de usuario invalidos</div>
-</form>-->
-
-<!--<div class="centered">
-  <div class="group">
-    <input type="text" id="name" required="required"/>
-    <label for="name">Name</label>
-    <div class="bar"></div>
-  </div>
-</div>-->
-
+</div>

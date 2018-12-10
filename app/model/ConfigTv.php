@@ -29,7 +29,14 @@ if ($accion == "guardarDatos") {
         $cont = DevolverUnDato("select count(*) from configtv");
         if ($cont > 0) {
             hacerConsulta("Update configtv set mensaje = '$MensajeR', video = '$Nvideo', TamanoLetra = '$Fuente', logo = '$Imagen'");
-        } else {
+   $consulta = "insert into tv (Modulo,Estado) values ('#12#.3421D',1)";
+            hacerConsulta($consulta);   
+ 
+
+
+$consulta = "insert into tv (Modulo,Estado) values ('#12#.3421D',2)";
+            hacerConsulta($consulta);
+ } else {
             $consulta = "insert into configtv (mensaje,video,TamanoLetra,logo) values ('$MensajeR','$Nvideo','$Fuente','$Imagen')";
             hacerConsulta($consulta);
         }

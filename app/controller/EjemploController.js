@@ -3,10 +3,14 @@ dashboardController.$inject = ['$scope', '$state', '$sessionStorage', 'servicios
 function dashboardController($scope, $state, $sessionStorage, $servicios) {
     if ($sessionStorage.idusuario === undefined) {
         $state.go('login');
+    } else {
+        if ($sessionStorage.rol == "ASESOR") {
+            $state.go('Mando');
+        }
     }
     $scope.TipoUsuario = $sessionStorage.rol;
 
-    $scope.NombreUsuario = $sessionStorage.nombreUsuario + " " + $sessionStorage.apellidoUsuario;
+    $scope.NombreUsuario = $sessionStorage.nombreUsuario ;
 
 
     $scope.GuardarConfig = function () {

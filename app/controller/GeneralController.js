@@ -1,6 +1,14 @@
 angular.module('Personeria').controller('GeneralController', InitController);
 InitController.$inject = ['$scope', '$state', '$sessionStorage', 'servicios'];
 function InitController($scope, $state, $sessionStorage, servicios) {
+   if ($sessionStorage.idusuario === undefined) {
+        $state.go('login');
+    } else {
+        if ($sessionStorage.rol == "ASESOR") {
+            $state.go('Mando');
+        }
+    }
+    
     $scope.mostrar = true;
 
     function arranque() {
@@ -10,7 +18,7 @@ function InitController($scope, $state, $sessionStorage, servicios) {
         }
         $scope.TipoUsuario = $sessionStorage.rol;
 
-        $scope.NombreUsuario = $sessionStorage.nombreUsuario + " " + $sessionStorage.apellidoUsuario;
+        $scope.NombreUsuario = $sessionStorage.nombreUsuario ;
     }
     $scope.ClicItem = function (es) {
         console.log(es);
@@ -40,7 +48,7 @@ function InitController($scope, $state, $sessionStorage, servicios) {
                 $state.go('ConfigTv');
                 break;
         }
-        ;
+        
     }
 
 

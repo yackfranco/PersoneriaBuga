@@ -98,24 +98,25 @@
             <div id="reporte" class="panelGrandeReportes" ng-model="reporte3">
                 <div class="DatosEmpresa">
                     <div>{{NombreEmpresa}}</div>
-                    <div>{{NIT}}</div>
+                    <div>NIT : {{NIT}}</div>
                 </div>
-                <form ng-submit="SacarReporte()">
-                    <div class="fechasFiltroReporte">
+                <div class="fechasFiltroReporte">
+                    <form ng-submit="SacarReporte()" >
+                        <div class="fechasFiltroReporte">
 
-                        <div >
-                            FechaInicio:<input class="inputFecha" ng-value="fi" type="date" required ng-model="fechaInicial" name="dateofbirth">
+                            <div class="fechasReporte">
+                                FechaInicio:<input class="inputFecha" ng-value="fi" type="date" required ng-model="fechaInicial" name="dateofbirth">
+                            </div>
+                            <div  class="fechasReporte">
+                                FechaFinal:<input class="inputFecha" type="date" required ng-model="fechaFinal" name="dateofbirth">
+                            </div>
                         </div>
-                        <div>
-                            FechaFinal:<input class="inputFecha" type="date" required ng-model="fechaFinal" name="dateofbirth">
+                        <div class="botonReporte">
+                            <input type="submit" value="Generar Reporte" name="boton" class="btn btn-primary"/>
                         </div>
-                        <input type="submit" value="Sacar Reporte" name="boton" />
-                        
 
-                    </div>
-                </form>                   
-                <input type="submit" ng-click="DescargarPDF('reporte', 'reporte2')" value="ejemplo PDF" name="boton" />
-                <input type="submit" ng-click="DescargarEXCEL()" value="ejemplo EXCEL" name="boton" />
+                    </form>     
+                </div>
             </div>
         </div>
     </div>

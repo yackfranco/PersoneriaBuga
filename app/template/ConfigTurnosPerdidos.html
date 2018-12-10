@@ -111,6 +111,24 @@
                  <div class="panelabajoTurnoP spantetp">
                     <span class="spantetp"> Numero de Llamados</span>
                     <input class="form-control texttiempoEsperaTPerdido" ng-model="NumeroLlamado" type="text">
+
+                </div>
+                <div class="panelabajoTurnoP spantetp">
+                    <span class="spantetp">Configurar Reinicio Automático Diario</span>
+                    <!--                    <label class="container labelcontadores">SI
+                                            <input type="checkbox"   ng-model="checkboxModel.Si">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="container labelcontadores">NO
+                                            <input type="checkbox"  ng-model="checkboxModel.No">
+                                            <span class="checkmark"></span>
+                                        </label>-->
+                    <form name="myForm">
+                        <label class="container labelcontadores">{{opcion}}
+                            <input type="checkbox" ng-model="checkboxModel.value1" ng-change="CapturarOpcion()">
+                            <span class="checkmark"></span>
+                        </label>
+                    </form>
                     <button type="button" ng-click="GuardarConfig()" class="btn btn-outline-primary">GUARDAR</button>
                 </div>
             </div>

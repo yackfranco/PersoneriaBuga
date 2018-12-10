@@ -3,12 +3,16 @@ InitController.$inject = ['$scope', '$state', '$sessionStorage', 'servicios'];
 function InitController($scope, $state, $sessionStorage, servicios) {
     if ($sessionStorage.idusuario === undefined) {
         $state.go('login');
+    } else {
+        if ($sessionStorage.rol == "ASESOR") {
+            $state.go('Mando');
+        }
     }
     $scope.NModulo == "";
     var idModuloEliminar = 0;
     $scope.TipoUsuario = $sessionStorage.rol;
     $scope.MostrarAlerta = false;
-    $scope.NombreUsuario = $sessionStorage.nombreUsuario + " " + $sessionStorage.apellidoUsuario;
+    $scope.NombreUsuario = $sessionStorage.nombreUsuario;
 
 //    $scope.NModulo
 

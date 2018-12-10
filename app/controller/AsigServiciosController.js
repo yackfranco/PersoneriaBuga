@@ -3,10 +3,14 @@ InitController.$inject = ['$scope', '$state', '$sessionStorage', 'servicios'];
 function InitController($scope, $state, $sessionStorage, servicios) {
    if ($sessionStorage.idusuario === undefined) {
         $state.go('login');
+    } else {
+        if ($sessionStorage.rol == "ASESOR") {
+            $state.go('Mando');
+        }
     }
     $scope.TipoUsuario = $sessionStorage.rol;
 
-    $scope.NombreUsuario = $sessionStorage.nombreUsuario + " " + $sessionStorage.apellidoUsuario;
+    $scope.NombreUsuario = $sessionStorage.nombreUsuario;
     $scope.usuarios = {};
     CargarUsuario();
     var datos = {};
@@ -42,8 +46,8 @@ function InitController($scope, $state, $sessionStorage, servicios) {
             LlenarTablas($scope.usuarioSelect);
         });
     }
-    
-    $scope.EliminarServicio = function(idservicio){
+
+    $scope.EliminarServicio = function (idservicio) {
         datos = {accion: "EliminarRelacionarServicio", idUsuario: $scope.usuarioSelect, idServicio: idservicio};
         servicios.RelacionUsuSer(datos).then(function success(response) {
             LlenarTablas($scope.usuarioSelect);

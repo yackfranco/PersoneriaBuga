@@ -2,6 +2,16 @@ angular.module('Personeria').controller('MandoController', InitController);
 InitController.$inject = ['$scope', '$state', '$sessionStorage', 'servicios', '$interval'];
 function InitController($scope, $state, $sessionStorage, servicios, $interval) {
 
+    if ($sessionStorage.idusuario === undefined) {
+        $state.go('login');
+    } else {
+        if ($sessionStorage.rol == "ADMINISTRADOR") {
+            $state.go('dashboard');
+        }
+    }
+
+    $scope.numModulo = $sessionStorage.modulo;
+    $scope.NombreUsuario = $sessionStorage.nombreUsuario;
 
     var datos = {};
     var TurnoActual = {};
@@ -191,7 +201,7 @@ function InitController($scope, $state, $sessionStorage, servicios, $interval) {
     }
     llenarTabla1();
 
-    $interval(function () {
+    var interval = $interval(function () {
         llenarTabla1();
     }, 2000);
     $scope.Limpiarmodalcrearpersona = function () {
@@ -291,4 +301,9 @@ function InitController($scope, $state, $sessionStorage, servicios, $interval) {
             }
         });
     }
+
+    $scope.cerrarSesionMando = function () {
+        $interval.cancel(interval);
+    }
+
 }

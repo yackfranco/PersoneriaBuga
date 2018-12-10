@@ -17,6 +17,17 @@ if ($accion == "cargarTabla") {
     }
 }
 
+if ($accion == "TraerTurnosEspera") {
+    $nombreServicio = $_REQUEST["IdServicio"];
+    $dato = DevolverUnDato("select count(*) from tablatemporal where idservicio = $nombreServicio");
+    $validar = array('respuesta' => $dato);
+}
+
+if ($accion == "EliminarTurnoEspera") {
+    $nombreServicio = $_REQUEST["IdServicio"];
+    hacerConsulta("delete from tablatemporal where idservicio = $nombreServicio");
+    $validar = array('respuesta' => "Eliminado");
+}
 
 if ($accion == "guardarServicio") {
     $nombreServicio = $_REQUEST["nombreServicio"];

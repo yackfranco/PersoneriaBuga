@@ -3,10 +3,14 @@ InitController.$inject = ['$scope', '$state', '$sessionStorage', 'servicios'];
 function InitController($scope, $state, $sessionStorage, servicios) {
     if ($sessionStorage.idusuario === undefined) {
         $state.go('login');
+    } else {
+        if ($sessionStorage.rol == "ASESOR") {
+            $state.go('Mando');
+        }
     }
     $scope.TipoUsuario = $sessionStorage.rol;
 
-    $scope.NombreUsuario = $sessionStorage.nombreUsuario + " " + $sessionStorage.apellidoUsuario;
+    $scope.NombreUsuario = $sessionStorage.nombreUsuario;
 
 
     var idServicioEliminar = 0;
@@ -103,5 +107,27 @@ function InitController($scope, $state, $sessionStorage, servicios) {
         $scope.MostrarAlerta = false;
     }
 
+    $scope.EliminarTurnoEspera = function (IdServicio, Servicio, opcion) {
+        console.log(IdServicio);
+        console.log(Servicio);
+        if (opcion == "var") {
+            idServicioEliminar = IdServicio;
+            $scope.ServicioEliminar = Servicio;
+            datos = {accion: "TraerTurnosEspera", IdServicio: idServicioEliminar};
+            servicios.Servicios(datos).then(function success(response) {
+                $scope.numTurnosEspera = response.data.respuesta;
+            });
 
+        }
+
+        if (opcion == "Eliminar") {
+            datos = {accion: "EliminarTurnoEspera", IdServicio: idServicioEliminar};
+            servicios.Servicios(datos).then(function success(response) {
+                if (response.data.respuesta == "Eliminado") {
+                    $('#EliminarTurnosEspera').modal('hide');
+                    llenarTabla();
+                }
+            });
+        }
+    }
 }

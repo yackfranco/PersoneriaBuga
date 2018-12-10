@@ -5,7 +5,7 @@
         <div class="logoMando">
             <!--logo-->
             <!--<img src="image/LOGO 3.png" alt="" class="logoMando"/>-->
-            <img src="image/LOGO PNG.png" alt="" class="logoMando"/>
+            <img src="image/LOGO PNG.png" alt="" class="logoMando" "/>
             <!--<img src="image/LOGO 3.png" alt=""/>-->
         </div>
 
@@ -33,17 +33,28 @@
             <div class="texto2"> <span class="letramando">{{turno}}</span></div>
             <div class="texto2"><span class="letramando">SERVICIO</span></div>
             <div class="texto2"><span class="letramando">{{servicio}}</span></div>
-            <div class="panelConfirmar" ng-show="ShowConfirmarTurno">
-                <h3>¿El paciente se encuentra en el momento?</h3>
-                <div class="botonesSINOMANDO">
-                    <button type="button" ng-click="ClickSi()" class="btn btn-dark boton1Mando" data-toggle="modal" data-target="#exampleModal">SI</button>
-                    <button type="button" ng-click="ClickNo()" class="btn btn-dark boton1Mando">NO</button>
+            <div class="panelConfirmar">
+                <div  ng-show="ShowConfirmarTurno">
+                    <h4>¿El paciente se encuentra en el momento?</h4>
+                    <div class="botonesSINOMANDO">
+                        <button type="button" ng-click="ClickSi()" class="btn btn-dark boton1Mando" data-toggle="modal" data-target="#exampleModal">SI</button>
+                        <button type="button" ng-click="ClickNo()" class="btn btn-dark boton1Mando">NO</button>
+                    </div>
                 </div>
             </div>
             <div class="botones3">
-                <button type="button" ng-show="ShowObservaciones" class="btn btn-dark BOTONES3Diseño" data-toggle="modal" data-target="#ObservacionModal">OBSERVACION</button>
-                <button type="button" ng-show="ShowRepetirLlamado" ng-click="RepetirLlamado()" class="btn btn-dark BOTONES3Diseño">REPETIR LLAMADO</button>
-                <button type="button" ng-show="ShowEditarEncuesta" ng-click="EditarEncuesta()" class="btn btn-dark BOTONES3Diseño" data-toggle="modal" data-target="#EncuestaEditarModal">EDITAR ENCUESTA</button>
+                <div class="botonAbajo">
+                    <button type="button" ng-show="ShowObservaciones" class="btn btn-dark BOTONES3Diseño" data-toggle="modal" data-target="#ObservacionModal">OBSERVACION</button>
+
+                </div>
+                <div class="botonAbajo">
+                    <button type="button" ng-show="ShowRepetirLlamado" ng-click="RepetirLlamado()" class="btn btn-dark BOTONES3Diseño">REPETIR LLAMADO</button>
+
+                </div>
+                <div class="botonAbajo">
+                    <button type="button" ng-show="ShowEditarEncuesta" ng-click="EditarEncuesta()" class="btn btn-dark BOTONES3Diseño" data-toggle="modal" data-target="#EncuestaEditarModal">EDITAR ENCUESTA</button>
+
+                </div>
             </div>
         </div>
 
@@ -53,7 +64,16 @@
                 <button type="button" class="btn btn-dark boton2Mando" ng-show="ShowTerminarTurno" ng-click="TerminarTurno()">TERMINAR TURNO</button>
             </div>
             <div  class="logo2empMando">
+                <div class="logout" ng-click="cerrarSesion(); cerrarSesionMando();">
+                    <img src="image/logout.png" alt="" style="width: 25px; height: 25px; margin-right: 10px"/>
+                    Cerrar Sesion
+                </div>
                 <img src="image/Logo Magiturno Website.png" alt="" class="logomagiturno"/>
+                <div class="infoPersona">
+                <!--<div style="width: 240px;margin-left: 40%">-->
+                    <div>{{NombreUsuario}}</div>
+                    <div>MODULO {{numModulo}}</div>
+                </div>
             </div>
         </div>
     </div>

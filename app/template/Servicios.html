@@ -185,6 +185,7 @@
                                 <td>
                                     <button type="button" class="btn btn-outline-primary" ng-click="EditarServicio(ser.IdServicio)" data-toggle="modal" data-target="#exampleModal">Editar</button>
                                     <button type="button" class="btn btn-outline-danger" ng-click="EliminarServicio(ser.IdServicio, ser.Servicio, 'var')" data-toggle="modal" data-target="#eliminarServicio" >Eliminar</button>
+                                    <button type="button" class="btn btn-outline-danger" ng-click="EliminarTurnoEspera(ser.IdServicio, ser.Servicio, 'var')" data-toggle="modal" data-target="#EliminarTurnosEspera" style="margin-top: 4px;width: 165px ">Eliminar Turnos</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -303,6 +304,31 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" ng-click="EliminarServicio(1, '', 'Eliminar')">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--MODAL PARA ELIMINAR TURNO ESPERA-->
+<div class="modal fade" id="EliminarTurnosEspera" tabindex="-1" role="dialog" aria-labelledby="eliminarServicio" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">ELIMINAR TURNO ESPERA</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p> ELIMINAR TURNOS EN ESPERA DEL SERVICIO {{ServicioEliminar}}</p>
+                <br>
+                <p>Tenga en cuenta, que el servicio tiene {{numTurnosEspera}} Turnos en Espera</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="EliminarTurnoEspera(1, '', 'Eliminar')">Eliminar</button>
             </div>
         </div>
     </div>

@@ -3,7 +3,12 @@ InitController.$inject = ['$scope', '$state', '$sessionStorage', 'servicios'];
 function InitController($scope, $state, $sessionStorage, servicios) {
     if ($sessionStorage.idusuario === undefined) {
         $state.go('login');
+    } else {
+        if ($sessionStorage.rol == "ASESOR") {
+            $state.go('Mando');
+        }
     }
+     $scope.NombreUsuario = $sessionStorage.nombreUsuario;
     $scope.TipoUsuario = $sessionStorage.rol;
     var idPoblacionEliminar = 0;
 
@@ -17,7 +22,7 @@ function InitController($scope, $state, $sessionStorage, servicios) {
         });
     }
 
- $scope.guardarPoblacion = function () {
+    $scope.guardarPoblacion = function () {
         if ($scope.NPoblacion == "" || $scope.NPoblacion == undefined) {
             alert("Por favor ingrese un tipo de población para guardar");
         } else {
@@ -38,8 +43,8 @@ function InitController($scope, $state, $sessionStorage, servicios) {
             });
         }
     }
-    
-     $scope.cerrarAlerta = function(){
+
+    $scope.cerrarAlerta = function () {
         $scope.MostrarAlerta = false;
     }
 

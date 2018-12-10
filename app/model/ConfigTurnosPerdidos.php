@@ -13,13 +13,15 @@ if ($accion == "cargarDatos") {
     } else {
         $resp = "sin datos";
     }
-
-    $validar = array('respuesta' => $resp);
+    $permisoReiniciar = DevolverUnDato("select permiso from reiniciar");
+    $validar = array('respuesta' => $resp, 'permiso' => $permisoReiniciar);
 }
 
 if ($accion == "guardarDatos") {
     $tiempoEspera = $_REQUEST["tiempoEspera"];
     $NumeroLlamado = $_REQUEST["NumeroLlamado"];
+    $permisoReiniciar= $_REQUEST["permiso"];
+    
     try {
         $cont = DevolverUnDato("select count(*) from configturnoperdido");
         if ($cont > 0) {
@@ -27,6 +29,7 @@ if ($accion == "guardarDatos") {
         } else {
             hacerConsulta("insert into configturnoperdido (TiempoEspera,NumeroLlamado) values ($tiempoEspera,$NumeroLlamado)");
         }
+        hacerConsulta("update reiniciar set permiso = $permisoReiniciar");
         $resp = "Guardado Correctamente";
     } catch (Exception $ex) {
         $resp = "Error al Guardar Configuracion de Los Turnos Perdidos";
