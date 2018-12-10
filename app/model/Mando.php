@@ -209,9 +209,15 @@ if ($accion == "cargarPoblacion") {
 if ($accion == "cargarTablaNumTurnos") {
     $idusuario = $_REQUEST["IdUsuario"];
     $arreglo = DevolverUnArreglo("select servicio.Servicio, COUNT(tablatemporal.IdServicio) as Cantidad from tablatemporal JOIN servicio on (tablatemporal.IdServicio = servicio.IdServicio) where tablatemporal.Estado = 'NORMAL'OR tablatemporal.Estado = 'APLAZADO' AND tablatemporal.IdServicio in (select IdServicio from relacionususer join usuario on (relacionususer.IdUsuario = usuario.IdUsuario) where relacionususer.IdUsuario = 4) GROUP by tablatemporal.IdServicio");
+    $contar = 0;
+    foreach ($arreglo as $value) {
+        $contar = $contar + $value['Cantidad'];
+    }
+
+
     //echo ("select servicio.Servicio, COUNT(tablatemporal.IdServicio) as Cantidad from tablatemporal JOIN servicio on (tablatemporal.IdServicio = servicio.IdServicio) where tablatemporal.IdServicio in (select IdServicio from relacionususer join usuario on (relacionususer.IdUsuario = usuario.IdUsuario) where relacionususer.IdUsuario = $idusuario) GROUP by tablatemporal.IdServicio");
 //    $arreglo = DevolverUnArreglo("SELECT servicio.Servicio, (select count(*) from tablatemporal where IdServicio= servicio.IdServicio AND Estado = 'NORMAL' or Estado = 'Aplazado' AND LlamadoPor='ASESOR') as Cantidad FROM `relacionususer` join servicio on (servicio.IdServicio = relacionususer.IdServicio) WHERE IdUsuario = $idusuario");
-    $validar = array('respuesta' => $arreglo);
+    $validar = array('respuesta' => $arreglo, 'contar' => $contar);
 }
 
 if ($accion == "TraerDatosEditar") {

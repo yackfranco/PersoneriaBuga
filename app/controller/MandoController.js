@@ -21,6 +21,7 @@ function InitController($scope, $state, $sessionStorage, servicios, $interval) {
     var IdPersonaAtendida = 0;
     var idEncuestaGlobal = 0;
     var idPersonaGlobal = 0;
+    var SinTurnos = "no hay";
 
     $scope.ShowTerminarTurno = false;
     $scope.ShowObservaciones = false;
@@ -39,6 +40,7 @@ function InitController($scope, $state, $sessionStorage, servicios, $interval) {
             console.log(response.data.respuesta);
             if (response.data.tipo == "NO HAY TURNOS")
             {
+                SinTurnos = false;
                 alert("Ya no hay turnos Disponibles");
             } else
             {
@@ -83,11 +85,11 @@ function InitController($scope, $state, $sessionStorage, servicios, $interval) {
 
                     console.log("aqui se elimina");
                     //Elimino El turno, porque se exedio en las vaces de llamado
-                    datos = {accion: "EliminarTurno", idAuditoria: TurnoActual.respuesta[0].IdAuditoria, IdTablaTemporal: TurnoActual.respuesta[0].IdTablaTemporal, NumLlamados: response.data.respuesta,IdUsuario: IdUsuario};
+                    datos = {accion: "EliminarTurno", idAuditoria: TurnoActual.respuesta[0].IdAuditoria, IdTablaTemporal: TurnoActual.respuesta[0].IdTablaTemporal, NumLlamados: response.data.respuesta, IdUsuario: IdUsuario};
                     servicios.Mando(datos).then(function success(response) {});
                 } else {
                     console.log("ENTRO Aplazado 1");
-                    datos = {accion: "aumentarLlamadoAplazado", IdTablaTemporal: TurnoActual.respuesta[0].IdTablaTemporal,IdUsuario: IdUsuario};
+                    datos = {accion: "aumentarLlamadoAplazado", IdTablaTemporal: TurnoActual.respuesta[0].IdTablaTemporal, IdUsuario: IdUsuario};
                     servicios.Mando(datos).then(function success(response) {});
                 }
             });
@@ -197,6 +199,19 @@ function InitController($scope, $state, $sessionStorage, servicios, $interval) {
         datos = {accion: "cargarTablaNumTurnos", IdUsuario: $sessionStorage.idusuario};
         servicios.Mando(datos).then(function success(response) {
             $scope.servicios = response.data.respuesta;
+            if (response.data.contar > 0) {
+                if (SinTurnos == "no hay") {
+                    console.log(SinTurnos);
+                    SinTurnos = "si hay";
+                    console.log(SinTurnos);
+                    notifi();
+                }
+
+            } else {
+                SinTurnos = "no hay";
+            }
+
+
         });
     }
     llenarTabla1();
@@ -261,7 +276,7 @@ function InitController($scope, $state, $sessionStorage, servicios, $interval) {
     }
 
     $scope.TerminarTurno = function () {
-        datos = {accion: "TerminarTurno", idpersona: IdPersonaAtendida, IdAuditoria: TurnoActual.respuesta[0].IdAuditoria, idEncuesta: idEncuestaGlobal, IdTemporal: TurnoActual.respuesta[0].IdTablaTemporal,IdUsuario: IdUsuario};
+        datos = {accion: "TerminarTurno", idpersona: IdPersonaAtendida, IdAuditoria: TurnoActual.respuesta[0].IdAuditoria, idEncuesta: idEncuestaGlobal, IdTemporal: TurnoActual.respuesta[0].IdTablaTemporal, IdUsuario: IdUsuario};
         console.log(datos);
         servicios.Mando(datos).then(function success(response) {
             console.log("Turno Terminado");
@@ -301,9 +316,21 @@ function InitController($scope, $state, $sessionStorage, servicios, $interval) {
             }
         });
     }
+    function notifi() {
+        Push.create("Notificacion nigga", {
+            body: 'Nuevo turno',
+            icon: '../../image/ActivarAlarma.png',
+            timeout: 4000,
+            vibrate: [100, 100, 100],
+            onClick: function () {
+                alert('Clic en la notificacion');
+            }
+
+        });
+    }
+
 
     $scope.cerrarSesionMando = function () {
         $interval.cancel(interval);
     }
-
 }
