@@ -89,7 +89,7 @@ function InitController($scope, $state, $sessionStorage, servicios) {
     }
     $scope.algo = "";
     $scope.EntrarLicencia = function () {
-        console.log($scope.algo);
+//        console.log($scope.contra);
         datos = {accion: "ValidarEntrarLicencia", contrase: $scope.contraLicencia};
         servicios.login(datos).then(function success(response) {
             if (response.data == "Entro") {
@@ -97,6 +97,15 @@ function InitController($scope, $state, $sessionStorage, servicios) {
                 $scope.mostrarFechaLicencia = true;
             } else {
                 alert("No Entro");
+            }
+        });
+    }
+
+    $scope.GuardarLicencia = function () {
+        datos = {accion: "GuardarLicencia", fecha: $scope.fechaL};
+        servicios.login(datos).then(function success(response) {
+            if (response.data == "Listo") {
+                $('#modalCambiarFecha').modal('hide');
             }
         });
     }

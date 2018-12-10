@@ -38,9 +38,11 @@ if ($accion == "guardarServicio") {
     $prioridad = $_REQUEST["prioridad"];
     $tv = $_REQUEST["tv"];
 
-
+    if (strlen($Prefijo)>3) {
+        $validar = array('respuesta' => "El prefijo solo puede tener 3 caracteres como maximo");
+    }
 //Pregunta si el numero a insertar es de tipo int
-    if (is_numeric($ConteoMinimo) && is_numeric($ConteoMaximo) && is_numeric($prioridad) && is_numeric($Secuencia)) {
+    else if (is_numeric($ConteoMinimo) && is_numeric($ConteoMaximo) && is_numeric($prioridad) && is_numeric($Secuencia)) {
         try {
             hacerConsulta("insert into servicio (Prefijo, Servicio,Cont_min, Cont_max, Secuencia, Prioridad, LLamadoTv, Color,ColorLetra) "
                     . "values ('$Prefijo','$nombreServicio',$ConteoMinimo,$ConteoMaximo,$Secuencia,$prioridad,$tv,'','')");

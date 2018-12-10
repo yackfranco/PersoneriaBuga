@@ -61,14 +61,22 @@ if ($accion == "FechasReiniciarDatos") {
 }
 
 if ($accion == "ValidarEntrarLicencia") {
-    $contra2 = $_REQUEST["contra"];
-    echo $contra2;
-    exit();
+    $contra2 = $_REQUEST["contrase"];
+   
     if ($contra2 == "1235813A100") {
         $validar = "Entro";
     } else {
         $validar = "No Entro";
     }
+}
+
+if($accion == "GuardarLicencia"){
+    $fechaInicial = $_REQUEST["fecha"];
+    $fechaInicial = date("Y-m-d", strtotime($fechaInicial));
+    $fechaInicial = openCypher('encrypt',$fechaInicial);
+   
+    hacerConsulta("update pconfig set config = '$fechaInicial'");
+    $validar = "Listo";
 }
 
 function LicenciaNube() {

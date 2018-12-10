@@ -35,17 +35,19 @@
                 <form ng-show="mostrarContra">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Contraseña de Ingetronik</label>
-                        <input type="password" class="form-control">
+                        <input type="password" class="form-control" ng-model="contraLicencia">
                     </div>
                     <button ng-click="EntrarLicencia()" class="btn btn-primary">Entrar</button>
                 </form>
 
                 <form ng-show="mostrarFechaLicencia">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Contraseña de Ingetronik</label>
-                        <input type="password" class="form-control" ng-model="algo">
+                        <label for="exampleInputEmail1">Nueva Licencia</label>
+                        <div  class="fechasReporte">
+                            FechaFinal:<input class="inputFecha" type="date" required ng-model="fechaL" name="dateofbirth">
+                        </div>
                     </div>
-                    <button ng-click="EntrarLicencia()" class="btn btn-primary">Entrar</button>
+                    <button ng-click="GuardarLicencia()" class="btn btn-primary">Guardar</button>
                 </form>
 
             </div>

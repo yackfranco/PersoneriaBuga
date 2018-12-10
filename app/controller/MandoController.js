@@ -333,4 +333,12 @@ function InitController($scope, $state, $sessionStorage, servicios, $interval) {
     $scope.cerrarSesionMando = function () {
         $interval.cancel(interval);
     }
-}
+var bPreguntar = true;
+
+    window.onbeforeunload = preguntarAntesDeSalir;
+
+    function preguntarAntesDeSalir()
+    {
+        if (bPreguntar)
+            return "¿Seguro que quieres salir?";
+    }}
