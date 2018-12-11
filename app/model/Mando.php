@@ -10,8 +10,12 @@ if ($accion == "Llamar") {
 
     $IdUsuario = $_POST["IdUsuario"];
 
+
+    //traerMinutosDeTiempo
+    $min = DevolverUnDato("select TiempoEspera from configturnosperdidos");
+
     //LLAMA LOS APLAZADOS
-    $consulta = "select * from tablatemporal join servicio on (tablatemporal.IdServicio = servicio.IdServicio) where Estado = 'Aplazado' and FechaLlamado < (SELECT NOW() - INTERVAL 2 MINUTE) and tablatemporal.IdServicio in (select IdServicio from relacionususer join usuario on (relacionususer.IdUsuario = usuario.IdUsuario) where relacionususer.IdUsuario = $IdUsuario) order by tablatemporal.UltimoLlamado ASC, tablatemporal.IdTablaTemporal ASC LIMIT 1";
+    $consulta = "select * from tablatemporal join servicio on (tablatemporal.IdServicio = servicio.IdServicio) where Estado = 'Aplazado' and FechaLlamado < (SELECT NOW() - INTERVAL $min MINUTE) and tablatemporal.IdServicio in (select IdServicio from relacionususer join usuario on (relacionususer.IdUsuario = usuario.IdUsuario) where relacionususer.IdUsuario = $IdUsuario) order by tablatemporal.UltimoLlamado ASC, tablatemporal.IdTablaTemporal ASC LIMIT 1";
     $Llamado = DevolverUnArreglo($consulta);
 
 
@@ -107,8 +111,14 @@ if ($accion == "Llamar") {
 }
 
 if ($accion == "LimiteLlamados") {
-    $respuesta = DevolverUnDato("select NumeroLlamado from configturnoperdido");
+
+    $respuesta = DevolverUnDato("select NumeroLlamado from configturnosperdidos");
     $validar = array('respuesta' => $respuesta);
+}
+
+if ($accion == "CambiarEstadoUsuario") {
+    $IdUsuario = $_REQUEST['idusuario'];
+    hacerConsulta("update Usuario set Estado= 'REPOSO' where IdUsuario=$IdUsuario");
 }
 
 if ($accion == "EliminarTurno") {
@@ -208,7 +218,7 @@ if ($accion == "cargarPoblacion") {
 }
 if ($accion == "cargarTablaNumTurnos") {
     $idusuario = $_REQUEST["IdUsuario"];
-    $arreglo = DevolverUnArreglo("select servicio.Servicio, COUNT(tablatemporal.IdServicio) as Cantidad from tablatemporal JOIN servicio on (tablatemporal.IdServicio = servicio.IdServicio) where tablatemporal.Estado = 'NORMAL'OR tablatemporal.Estado = 'APLAZADO' AND tablatemporal.IdServicio in (select IdServicio from relacionususer join usuario on (relacionususer.IdUsuario = usuario.IdUsuario) where relacionususer.IdUsuario = 4) GROUP by tablatemporal.IdServicio");
+    $arreglo = DevolverUnArreglo("select servicio.Servicio, COUNT(tablatemporal.IdServicio) as Cantidad from tablatemporal JOIN servicio on (tablatemporal.IdServicio = servicio.IdServicio) where tablatemporal.Estado = 'NORMAL'OR tablatemporal.Estado = 'APLAZADO' AND tablatemporal.IdServicio in (select IdServicio from relacionususer join usuario on (relacionususer.IdUsuario = usuario.IdUsuario) where relacionususer.IdUsuario = $idusuario) GROUP by tablatemporal.IdServicio");
     $contar = 0;
     foreach ($arreglo as $value) {
         $contar = $contar + $value['Cantidad'];

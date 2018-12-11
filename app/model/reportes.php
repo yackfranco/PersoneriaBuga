@@ -270,7 +270,7 @@ $objPHPExcel->getActiveSheet()->getColumnDimension('V')->setAutoSize(true);
 
 
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment;filename="Reporte de ' . $fechaInicial . ' a ' . $fechafinal . '.xlsx"');
+header('Content-Disposition: attachment;filename="Reporte de ' . $fechaInicial . ' a ' . $fechafinal . '.xls"');
 header('Cache-Control: max-age=0');
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
 $objWriter->save('php://output');

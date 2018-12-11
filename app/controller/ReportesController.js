@@ -43,14 +43,14 @@ function InitController($scope, $state, $sessionStorage, servicios) {
 
     $scope.DescargarEXCEL = function () {
 
-        location.href = "http://" + ip + "/PersoneriaBuga/app/model/reportes.php";
+        location.href = "http://192.168.1.93/PersoneriaBuga/app/model/reportes.php";
 
     }
 
     $scope.SacarReporte = function () {
         convertDatePickerTimeToMySQLTime($scope.fechaFinal);
 
-        location.href = "http://" + ip + "/PersoneriaBuga/app/model/reportes.php?fechafinal=" + convertDatePickerTimeToMySQLTime($scope.fechaFinal) + "&fechaInicial=" + convertDatePickerTimeToMySQLTime($scope.fechaInicial) + "";
+        location.href = "http://192.168.1.93/PersoneriaBuga/app/model/reportes.php?fechafinal=" + convertDatePickerTimeToMySQLTime($scope.fechaFinal) + "&fechaInicial=" + convertDatePickerTimeToMySQLTime($scope.fechaInicial) + "";
 //        console.log($scope.fechaFinal);
     }
 

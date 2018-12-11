@@ -72,8 +72,10 @@ function InitController($scope, $state, $sessionStorage, servicios, $interval) {
     }
 
     $scope.ClickNo = function () {
+        datos = {accion: "CambiarEstadoUsuario",idusuario:IdUsuario};
+            servicios.Mando(datos);
         if (TurnoActual.tipo == "Aplazados") {
-            datos = {accion: "LimiteLlamados"};
+            datos = {accion: "LimiteLlamados",idusuario:IdUsuario};
             servicios.Mando(datos).then(function success(response) {
 
                 console.log("Ultimo Llamado del Turno:" + TurnoActual.respuesta[0].UltimoLlamado);
