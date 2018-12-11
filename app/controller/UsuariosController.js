@@ -33,6 +33,7 @@ function InitController($scope, $state, $sessionStorage, servicios) {
                 $scope.tipoAlerta = "alert-success";
                 $scope.MostrarAlerta = true;
                 llenarTabla();
+                $scope.usu = {};
                 $scope.serv = {};
             } else {
                 $scope.alerta = response.data.respuesta;

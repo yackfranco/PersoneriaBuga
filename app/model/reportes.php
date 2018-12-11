@@ -1,5 +1,4 @@
 <?php
-
 header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json');
 include 'conexion.php';
@@ -267,7 +266,7 @@ $objPHPExcel->getActiveSheet()->getColumnDimension('S')->setAutoSize(true);
 $objPHPExcel->getActiveSheet()->getColumnDimension('T')->setAutoSize(true);
 $objPHPExcel->getActiveSheet()->getColumnDimension('U')->setAutoSize(true);
 $objPHPExcel->getActiveSheet()->getColumnDimension('V')->setAutoSize(true);
-$objPHPExcel->getActiveSheet()->getColumnDimension('W')->setAutoSize(true);
+//$objPHPExcel->getActiveSheet()->getColumnDimension('W')->setAutoSize(true);
 
 
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');

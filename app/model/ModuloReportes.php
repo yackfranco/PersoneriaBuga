@@ -11,5 +11,12 @@ if ($accion == "DatosEmpresa") {
     $validar = array('respuesta' => $arreglo);
 }
 
+
+if ($accion == "traerip") {
+    $arreglo = DevolverUnDato("select ipservidor from reiniciar");
+    $validar = array('respuesta' => $arreglo);
+}
+
+
 echo json_encode($validar, JSON_FORCE_OBJECT);
 ?>

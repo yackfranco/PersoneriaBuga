@@ -9,7 +9,7 @@ function InitController($scope, $state, $sessionStorage, servicios) {
         }
     }
     $scope.TipoUsuario = $sessionStorage.rol;
-
+    var ip = "";
     $scope.NombreUsuario = $sessionStorage.nombreUsuario;
     var datos = {};
 
@@ -19,6 +19,10 @@ function InitController($scope, $state, $sessionStorage, servicios) {
         $scope.NombreEmpresa = response.data.respuesta[0].NombreEmpresa;
         $scope.NIT = response.data.respuesta[0].nit;
 //        $scope.servicio = response.data.respuesta;
+    });
+    datos = {accion: 'traerip'};
+    servicios.ModuloReportes(datos).then(function success(response) {
+        ip = response.respuesta;
     });
 
     $scope.DescargarPDF = function (ContenidoID, nombre) {
@@ -38,14 +42,15 @@ function InitController($scope, $state, $sessionStorage, servicios) {
     }
 
     $scope.DescargarEXCEL = function () {
-        location.href = "http://localhost/PersoneriaBuga/app/model/reportes.php";
+
+        location.href = "http://" + ip + "/PersoneriaBuga/app/model/reportes.php";
 
     }
 
     $scope.SacarReporte = function () {
         convertDatePickerTimeToMySQLTime($scope.fechaFinal);
-        
-         location.href = "http://localhost/PersoneriaBuga/app/model/reportes.php?fechafinal="+ convertDatePickerTimeToMySQLTime($scope.fechaFinal)+"&fechaInicial="+convertDatePickerTimeToMySQLTime($scope.fechaInicial)+"";
+
+        location.href = "http://" + ip + "/PersoneriaBuga/app/model/reportes.php?fechafinal=" + convertDatePickerTimeToMySQLTime($scope.fechaFinal) + "&fechaInicial=" + convertDatePickerTimeToMySQLTime($scope.fechaInicial) + "";
 //        console.log($scope.fechaFinal);
     }
 

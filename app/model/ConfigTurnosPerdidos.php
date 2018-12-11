@@ -7,9 +7,9 @@ include 'conexion.php';
 $accion = $_REQUEST["accion"];
 
 if ($accion == "cargarDatos") {
-    $cont = DevolverUnDato("select count(*) from configturnoperdido");
+    $cont = DevolverUnDato("select count(*) from configturnosperdidos");
     if ($cont > 0) {
-        $resp = DevolverUnArreglo("SELECT * from configturnoperdido");
+        $resp = DevolverUnArreglo("SELECT * from configturnosperdidos");
     } else {
         $resp = "sin datos";
     }
@@ -23,11 +23,11 @@ if ($accion == "guardarDatos") {
     $permisoReiniciar= $_REQUEST["permiso"];
     
     try {
-        $cont = DevolverUnDato("select count(*) from configturnoperdido");
+        $cont = DevolverUnDato("select count(*) from configturnosperdidos");
         if ($cont > 0) {
-            hacerConsulta("Update configturnoperdido set TiempoEspera = $tiempoEspera, NumeroLlamado = $NumeroLlamado");
+            hacerConsulta("Update configturnosperdidos set TiempoEspera = $tiempoEspera, NumeroLlamado = $NumeroLlamado");
         } else {
-            hacerConsulta("insert into configturnoperdido (TiempoEspera,NumeroLlamado) values ($tiempoEspera,$NumeroLlamado)");
+            hacerConsulta("insert into configturnosperdidos (TiempoEspera,NumeroLlamado) values ($tiempoEspera,$NumeroLlamado)");
         }
         hacerConsulta("update reiniciar set permiso = $permisoReiniciar");
         $resp = "Guardado Correctamente";

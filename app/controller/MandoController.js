@@ -316,19 +316,30 @@ function InitController($scope, $state, $sessionStorage, servicios, $interval) {
             }
         });
     }
+   
+//    window.onload = function () {
+//        Push.requestPermission();
+//    }
+
+
     function notifi() {
-        Push.create("Notificacion nigga", {
-            body: 'Nuevo turno',
-            icon: '../../image/ActivarAlarma.png',
-            timeout: 4000,
+ 
+               Push.Permission.request();
+        Push.create("NUEVOS TURNOS EN COLA", {
+            body: 'Turnos Esperando Por Atención',
+            icon: 'image/ActivarAlarma.png',
+            timeout: 10000,
             vibrate: [100, 100, 100],
             onClick: function () {
-                alert('Clic en la notificacion');
+                window.focus();
+                this.close();
             }
-
         });
-    }
 
+        var audio = document.getElementById("audio");
+
+        audio.play();
+    }
 
     $scope.cerrarSesionMando = function () {
         $interval.cancel(interval);
