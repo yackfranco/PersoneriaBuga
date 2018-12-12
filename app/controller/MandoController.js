@@ -127,6 +127,8 @@ function InitController($scope, $state, $sessionStorage, servicios, $interval) {
     }
 
     $scope.guardarPersona = function () {
+
+        $scope.FechaNacimiento = "";
         $scope.usuInsertar.Fecha = fecha;
         $scope.usuInsertar.accion = "guardarPersona";
         var datos = {};
@@ -222,7 +224,15 @@ function InitController($scope, $state, $sessionStorage, servicios, $interval) {
 //        llenarTabla1();
 //    }, 2000);
     $scope.Limpiarmodalcrearpersona = function () {
-        $scope.usuInsertar = {};
+        $scope.usuInsertar = {
+            NombreCompleto: "",
+            Cedula: $scope.Cedula,
+            Sexo: "",
+            Direccion: "",
+            Barrio: "",
+            Telefono: "",
+
+        };
     }
     $scope.EditarPesona = function (idpersona2) {
 

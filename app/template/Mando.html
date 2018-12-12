@@ -299,7 +299,7 @@
                         <div class="form-group row">
                             <label for="exampleFormControlSelect1" class="col-sm-4 col-form-label labelListaServicio">Sexo</label>
                             <div class="col-sm-8">
-                                <select class="form-control" ng-model="usuInsertar.Sexo" required>
+                                <select class="form-control" ng-model="usuInsertar.Sexo" >
                                     <option value="MASCULINO">MASCULINO</option>
                                     <option value="FEMENINO">FEMENINO</option>
                                 </select>
@@ -308,26 +308,26 @@
                         <div class="form-group row">
                             <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Dirección</label>
                             <div class="col-sm-8">
-                                <input type="text" ng-model="usuInsertar.Direccion" class="form-control" required>
+                                <input type="text" ng-model="usuInsertar.Direccion" class="form-control" >
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Barrio</label>
                             <div class="col-sm-8">
-                                <input type="text" ng-model="usuInsertar.Barrio" class="form-control" required>
+                                <input type="text" ng-model="usuInsertar.Barrio" class="form-control" >
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Telefono</label>
                             <div class="col-sm-8">
-                                <input type="number" ng-model="usuInsertar.Telefono" class="form-control" required>
+                                <input type="number" ng-model="usuInsertar.Telefono" class="form-control" >
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputPassword3" class="col-sm-4 col-form-label labelListaServicio">Fecha Nacimiento</label>
                             <div class="col-sm-8">
                                 <!--<input type="text" id="datepicker" ng-change="CapturarFecha()" class="form-control" required>-->
-                                <input class="inputFecha" type="date" ng-change="CapturarFecha()" name="dateofbirth" ng-model="FechaNacimiento" required >
+                                <input class="inputFecha" type="date" ng-change="CapturarFecha()" name="dateofbirth" ng-model="FechaNacimiento">
                                 <!--<input type="text" ng-model="usuInsertar.Fecha" class="form-control" required>-->
                             </div>
                         </div>

@@ -173,7 +173,10 @@ if ($accion == "guardarPersona") {
     $newDate = date("Y-m-d", strtotime($Fecha));
 
 //Pregunta si el numero a insertar es de tipo int
-    if (is_numeric($Cedula) && is_numeric($Telefono)) {
+    if (is_numeric($Cedula)) {
+        if ($Telefono == "") {
+            $Telefono = 0;
+        }
         $sd = DevolverUnDato("select count(*) from personas where Cedula = '$Cedula'");
         if ($sd > 0) {
             $validar = array('respuesta' => "El usuario ya se encuentra registrado, por favor intente otro");
