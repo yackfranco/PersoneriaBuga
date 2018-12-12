@@ -218,9 +218,9 @@ function InitController($scope, $state, $sessionStorage, servicios, $interval) {
     }
     llenarTabla1();
 
-    var interval = $interval(function () {
-        llenarTabla1();
-    }, 2000);
+//    var interval = $interval(function () {
+//        llenarTabla1();
+//    }, 2000);
     $scope.Limpiarmodalcrearpersona = function () {
         $scope.usuInsertar = {};
     }
@@ -354,4 +354,16 @@ var bPreguntar = true;
     {
         if (bPreguntar)
             return "¿Seguro que quieres salir?";
-    }}
+    }
+    
+   
+    $interval(function () {
+        DatosNube();
+    }, 10000); 
+    
+    
+     function DatosNube() {
+        datos = {accion: "TraerDatosLocal"};
+        servicios.Nube(datos);
+    }
+}

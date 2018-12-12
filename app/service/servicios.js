@@ -51,6 +51,9 @@ function servicios($http, urlBase, $httpParamSerializerJQLike) {
     this.Dashboard = (data) => {
         return $http.post(urlBase + 'Dashboard.php', $httpParamSerializerJQLike(data));
     };
+    this.Nube = (data) => {
+        return $http.post(urlBase + 'ConexionNube.php', $httpParamSerializerJQLike(data));
+    };
     /*this.logout = ($sessionStorage, $scope) => {
      delete $sessionStorage.data_user;
      $scope.$parent.show = true;

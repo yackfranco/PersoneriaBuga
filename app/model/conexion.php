@@ -27,7 +27,6 @@ function DevolverUnArreglo($query) {
     while ($row = mysqli_fetch_assoc($resultado)) {
         $rawdata[] = $row;
     }
-
     return $rawdata;
 }
 
